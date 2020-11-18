@@ -43,6 +43,13 @@ namespace CadeteriaMVC.Entidades
 
         }
 
+        public Cliente() 
+        {
+            this.nombre = "";
+            this.direccion = "";
+            this.telefono = 1234;
+        }
+
         public override int ContarPedidos()
         {
             return this.listaPedidos.Count;

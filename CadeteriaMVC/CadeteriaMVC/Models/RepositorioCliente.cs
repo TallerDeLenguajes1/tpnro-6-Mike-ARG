@@ -13,7 +13,7 @@ namespace CadeteriaMVC.Models
         {
             List<CadeteriaMVC.Entidades.Cliente> ListaClientes = new List<CadeteriaMVC.Entidades.Cliente>();
 
-            string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\cadeteria.db");
+            string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
             var conection = new SQLiteConnection(path);
             conection.Open();
 
@@ -24,7 +24,7 @@ namespace CadeteriaMVC.Models
             var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                CadeteriaMVC.Entidades.Cliente C = new CadeteriaMVC.Entidades.Cliente("","",1234);
+                CadeteriaMVC.Entidades.Cliente C = new CadeteriaMVC.Entidades.Cliente();
 
                 C.id = Convert.ToInt32(reader["idCliente"]);
                 C.nombre = reader["nombre"].ToString();
