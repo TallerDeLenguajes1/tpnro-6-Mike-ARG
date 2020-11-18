@@ -1,0 +1,22 @@
+﻿@model List<CadeteriaMVC.Entidades.Cliente>
+
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Direccion</th>
+        <th>Telefono</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+    </tr>
+
+    @foreach (CadeteriaMVC.Entidades.Cliente C in Model)
+    {
+        <tr>
+            <td>@C.nombre</td>
+            <td>@C.direccion</td>
+            <td>@C.telefono</td>
+            <td>@Html.ActionLink("Modificar", "UpdateCliente", new { id = C.id })</td>
+            <td>@Html.ActionLink("Eliminar", "BajaCliente", new { id = C.id })</td>
+        </tr>
+    }
+</table>

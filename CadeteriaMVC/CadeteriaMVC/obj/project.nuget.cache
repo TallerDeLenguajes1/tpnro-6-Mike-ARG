@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zwJUo1k/+3WXc3BPogQP+uHt4w0PsU6ZTGsRcqQ36f3pjnD20+0kx3eWmx+XVU8SjB8MlKVYuS8ckyRDmjJChw==",
+  "dgSpecHash": "ewdbS1KDMNlqrbqR7Mh+DK0g2bsSRwXK26Z+CRj5+CGhGEZl28i8vNlejbvtZ4H0yZvrtaeOqAHcoejKwtCOhg==",
   "success": true,
   "projectFilePath": "C:\\RepoGit2\\tp6\\CadeteriaMVC\\CadeteriaMVC\\CadeteriaMVC.csproj",
   "expectedPackageFiles": [
@@ -46,6 +46,7 @@
     "C:\\Users\\Miguel\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Miguel\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Miguel\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\Miguel\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.113.1\\stub.system.data.sqlite.core.netstandard.1.0.113.1.nupkg.sha512",
     "C:\\Users\\Miguel\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\Miguel\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\Miguel\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
@@ -58,6 +59,7 @@
     "C:\\Users\\Miguel\\.nuget\\packages\\system.composition.runtime\\1.0.31\\system.composition.runtime.1.0.31.nupkg.sha512",
     "C:\\Users\\Miguel\\.nuget\\packages\\system.composition.typedparts\\1.0.31\\system.composition.typedparts.1.0.31.nupkg.sha512",
     "C:\\Users\\Miguel\\.nuget\\packages\\system.console\\4.3.0\\system.console.4.3.0.nupkg.sha512",
+    "C:\\Users\\Miguel\\.nuget\\packages\\system.data.sqlite.core\\1.0.113.6\\system.data.sqlite.core.1.0.113.6.nupkg.sha512",
     "C:\\Users\\Miguel\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
     "C:\\Users\\Miguel\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.3.0\\system.diagnostics.diagnosticsource.4.3.0.nupkg.sha512",
     "C:\\Users\\Miguel\\.nuget\\packages\\system.diagnostics.tools\\4.3.0\\system.diagnostics.tools.4.3.0.nupkg.sha512",

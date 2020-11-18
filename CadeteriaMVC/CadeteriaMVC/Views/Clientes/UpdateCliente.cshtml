@@ -1,0 +1,25 @@
+﻿@model CadeteriaMVC.Entidades.Cliente
+
+
+<form asp-action="ModificarCliente" method="post">
+    <div class="container">
+        <label asp-for="nombre">Nombre</label>
+        <input type="text" asp-for="nombre" value="@Model.nombre" />
+        <span asp-validation-for="nombre"></span>
+    </div>
+
+    <div class="container">
+        <label asp-for="direccion">Direccion</label>
+        <input type="text" asp-for="direccion" value="@Model.direccion" />
+        <span asp-validation-for="direccion" />
+    </div>
+
+    <div class="container">
+        <label asp-for="telefono">Telefono</label>
+        <input type="text" asp-for="telefono" value="@Model.telefono" />
+    </div>
+
+    <input type="text" asp-for="id" value="@Model.id" hidden />
+
+    <input type="submit" />
+</form>
