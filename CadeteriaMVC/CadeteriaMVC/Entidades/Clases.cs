@@ -84,6 +84,18 @@ namespace CadeteriaMVC.Entidades
             this.costoPedido = CostoPedido();
         }
 
+        public Pedido() 
+        {
+            this.id = contador;
+            contador++;
+            this.observacion = "";
+            this.cliente = new Cliente();
+            estado = Estado.NoDisponible;
+            this.tipoPedido = TipoPedido.Express;
+            this.tieneCupon = false;
+            this.costoPedido = CostoPedido();
+        }
+
         public enum Estado
         {
             Entregado = 0,
@@ -157,6 +169,7 @@ namespace CadeteriaMVC.Entidades
     {
 
         public Vehiculo TipoVehiculo { get; set; }
+        public string vehiculo;
 
         public Cadete() : base()
         {
@@ -174,6 +187,7 @@ namespace CadeteriaMVC.Entidades
                 case Pedido.TipoPedido.Express:
                     if (this.TipoVehiculo == Vehiculo.Moto)
                     {
+                        vehiculo = "Moto";
                         ped.costoPedido += ped.costoPedido * 0.20;
                         this.listaPedidos.Add(ped);
                     }
@@ -181,6 +195,7 @@ namespace CadeteriaMVC.Entidades
                 case Pedido.TipoPedido.Delicado:
                     if (this.TipoVehiculo == Vehiculo.Auto)
                     {
+                        vehiculo = "Auto";
                         ped.costoPedido += ped.costoPedido * 0.25;
                         this.listaPedidos.Add(ped);
                     }
@@ -188,6 +203,7 @@ namespace CadeteriaMVC.Entidades
                 case Pedido.TipoPedido.Ecologico:
                     if (this.TipoVehiculo == Vehiculo.Bicicleta)
                     {
+                        vehiculo = "Bicicleta";
                         ped.costoPedido += ped.costoPedido * 0.05;
                         this.listaPedidos.Add(ped);
                     }
@@ -231,7 +247,7 @@ namespace CadeteriaMVC.Entidades
         {
             Console.WriteLine("ID del cadete: " + ID());
             Console.WriteLine("Nombre del cadete: " + this.nombre);
-            Console.WriteLine("Tipo de vehículo: " + this.TipoVehiculo);
+            Console.WriteLine("Tipo de vehículo: " + this.vehiculo);
             Console.WriteLine("Cantidad de pedidos entregados: " + this.CantidadEntregados());
             Console.WriteLine("Jornal a cobrar: " + this.CalcularJornal());
             Console.WriteLine("");
@@ -244,9 +260,9 @@ namespace CadeteriaMVC.Entidades
 
         public enum Vehiculo
         {
-            Bicicleta,
-            Auto,
-            Moto
+            Bicicleta = 5,
+            Auto = 25,
+            Moto = 20
         }
     }
 
