@@ -1,0 +1,35 @@
+﻿@model CadeteriaMVC.Entidades.Cadete
+@{ ViewData["Title"] = "Crear cadete"; }
+
+<div class="text-center">
+    <h3>Crear cadete</h3>
+</div>
+
+<form asp-action="CrearCadete" method="post">
+    <div class="container">
+        <label asp-for="nombre">Nombre</label>
+        <input type="text" asp-for="nombre" />
+        <span asp-validation-for="nombre"></span>
+    </div>
+
+    <div class="container">
+        <label asp-for="direccion">Direccion</label>
+        <input type="text" asp-for="direccion" />
+        <span asp-validation-for="direccion" />
+    </div>
+
+    <div class="container">
+        <label asp-for="telefono">Telefono</label>
+        <input type="text" asp-for="telefono" />
+    </div>
+
+    <div class="container">
+        <label asp-for="vehiculo">Vehiculo</label>
+         <select asp-for="vehiculo">
+                @foreach (Extra V in new RepositorioExtra().GetAllVehiculos())
+                {
+                    <option value="@V.">@V.NombreX</option>
+                }
+        </div>
+        <input type="submit" />
+    </form>

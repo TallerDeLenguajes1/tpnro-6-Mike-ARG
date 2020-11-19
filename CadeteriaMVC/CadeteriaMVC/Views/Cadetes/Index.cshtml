@@ -1,0 +1,33 @@
+﻿@model List<CadeteriaMVC.Entidades.Cadete>
+@{ ViewData["Title"] = "Cadetes"; }
+
+<div class="text-center">
+    <h3>Listado de cadetes</h3>
+</div>
+
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Direccion</th>
+        <th>Telefono</th>
+        <th>Vehiculo</th>
+        <th>Jornal</th>
+        <th>Pedidos</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+    </tr>
+
+    @foreach (CadeteriaMVC.Entidades.Cadete C in Model)
+    {
+        <tr>
+            <td>@C.nombre</td>
+            <td>@C.direccion</td>
+            <td>@C.telefono</td>
+            <td>@C.vehiculo</td>
+            <td>@C.CalcularJornal()</td>
+            <td>@Html.ActionLink("Ver pedidos", "MostrarPedidos", new { id = C.id })</td>
+            <td>@Html.ActionLink("Modificar", "UpdateCadete", new { id = C.id })</td>
+            <td>@Html.ActionLink("Eliminar", "BajaCadete", new { id = C.id })</td>
+        </tr>
+    }
+</table>
