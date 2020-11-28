@@ -118,3 +118,5 @@ C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Cl
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Index.cshtml.g.cs
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\UpdateCliente.cshtml.g.cs
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Cadetes\Index.cshtml.g.cs
+C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Cadetes\AltaCadete.cshtml.g.cs
+C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Cadetes\BajaCadete.cshtml.g.cs

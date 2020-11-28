@@ -112,6 +112,5 @@ namespace CadeteriaMVC.Models
             conection.Close();
             return C;
         }
-
     }
 }

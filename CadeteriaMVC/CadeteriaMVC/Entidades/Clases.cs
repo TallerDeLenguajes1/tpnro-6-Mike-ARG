@@ -29,7 +29,7 @@ namespace CadeteriaMVC.Entidades
             contador++;
             this.nombre = "";
             this.direccion = "";
-            this.telefono = -1;
+            //this.telefono;
             listaPedidos = new List<Pedido>();
         }
 
@@ -263,6 +263,16 @@ namespace CadeteriaMVC.Entidades
             Bicicleta = 5,
             Auto = 25,
             Moto = 20
+        }
+
+        public List<Vehiculo> GetVehiculos() 
+        {
+            List<Vehiculo> listaVehiculos = new List<Vehiculo>();
+            listaVehiculos.Add(Vehiculo.Auto);
+            listaVehiculos.Add(Vehiculo.Bicicleta);
+            listaVehiculos.Add(Vehiculo.Moto);
+
+            return listaVehiculos;
         }
     }
 

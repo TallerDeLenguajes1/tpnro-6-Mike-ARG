@@ -24,12 +24,12 @@
     </div>
 
     <div class="container">
-        <label asp-for="vehiculo">Vehiculo</label>
-         <select asp-for="vehiculo">
-                @foreach (Extra V in new RepositorioExtra().GetAllVehiculos())
-                {
-                    <option value="@V.">@V.NombreX</option>
-                }
-        </div>
-        <input type="submit" />
-    </form>
+      <label asp-for="vehiculo">Vehiculo</label>
+      <select asp-for="vehiculo">
+          <option value="@CadeteriaMVC.Entidades.Cadete.Vehiculo.Auto">@CadeteriaMVC.Entidades.Cadete.Vehiculo.Auto</option>
+          <option value="@CadeteriaMVC.Entidades.Cadete.Vehiculo.Moto">@CadeteriaMVC.Entidades.Cadete.Vehiculo.Moto</option>
+          <option value="@CadeteriaMVC.Entidades.Cadete.Vehiculo.Bicicleta">@CadeteriaMVC.Entidades.Cadete.Vehiculo.Bicicleta</option>
+      </select>
+    </div>
+    <input type="submit" />
+</form>

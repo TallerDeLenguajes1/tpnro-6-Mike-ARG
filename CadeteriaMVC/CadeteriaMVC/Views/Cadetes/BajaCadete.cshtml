@@ -1,0 +1,12 @@
+﻿@model CadeteriaMVC.Entidades.Cadete
+@{ ViewData["Title"] = "Eliminar cadete"; }
+
+<div class="text-center">
+    <h3>Eliminar cadete</h3>
+</div>
+
+<form asp-action="EliminarCadete" method="post">
+    <input type="text" asp-for="id" value="@Model.id" hidden />
+    <h5>Seguro desea eliminar a @Model.nombre?</h5>
+    <input type="submit" />
+</form>
