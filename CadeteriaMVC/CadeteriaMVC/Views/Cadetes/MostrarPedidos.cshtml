@@ -1,0 +1,36 @@
+﻿@model List<CadeteriaMVC.Entidades.Pedido>
+@{ ViewData["Title"] = "Pedidos de " + ViewBag.nombre; }
+
+<div class="text-center">
+    <h3>Pedidos del cadete: @ViewBag.nombre</h3>
+</div>
+
+<table class="table">
+    <tr>
+        <th>Cliente</th>
+        <th>Direccion</th>
+        <th>Observacion</th>
+        <th>Estado</th>
+        <th>Tipo</th>
+        <th>Cupon</th>
+        <th>Costo</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+    </tr>
+
+    @foreach (CadeteriaMVC.Entidades.Pedido C in Model)
+    {
+        //CadeteriaMVC.Entidades.Cliente Cl = new RepositorioCliente().Buscar(C.IdCliente);
+        <tr>
+            <td>@C.cliente.nombre</td>
+            <td>@C.cliente.direccion</td>
+            <td>@C.observacion</td>
+            <td>@C.estado</td>
+            <td>@C.tipoPedido</td>
+            <td>@C.tieneCupon</td>
+            <td>@C.costoPedido</td>
+            <td>@Html.ActionLink("Modificar", "UpdatePedido", "Pedidos", new { id = C.id })</td>
+            <td>@Html.ActionLink("Eliminar", "BajaPedido", "Pedidos", new { id = C.id })</td>
+        </tr>
+    }
+</table>

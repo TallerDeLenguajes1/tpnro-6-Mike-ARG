@@ -1,0 +1,39 @@
+﻿@model CadeteriaMVC.Entidades.Cadete
+
+@{ ViewData["Title"] = "Modificar cadete"; }
+
+<div class="text-center">
+    <h3>Modificar cadete</h3>
+</div>
+
+<form asp-action="ModificarCadete" method="post">
+    <div class="container">
+        <label asp-for="nombre">Nombre</label>
+        <input type="text" asp-for="nombre" />
+        <span asp-validation-for="nombre"></span>
+    </div>
+
+    <div class="container">
+        <label asp-for="direccion">Dirección</label>
+        <input type="text" asp-for="direccion" />
+        <span asp-validation-for="direccion"></span>
+    </div>
+
+    <div class="container">
+        <label asp-for="telefono">Teléfono</label>
+        <input type="text" asp-for="telefono" />
+        <span asp-validation-for="telefono"></span>
+    </div>
+
+    <div class="container">
+        <label asp-for="vehiculo">Vehiculo</label>
+        <select asp-for="vehiculo">
+            <option value="@CadeteriaMVC.Entidades.Cadete.Vehiculo.Auto">@CadeteriaMVC.Entidades.Cadete.Vehiculo.Auto</option>
+            <option value="@CadeteriaMVC.Entidades.Cadete.Vehiculo.Moto">@CadeteriaMVC.Entidades.Cadete.Vehiculo.Moto</option>
+            <option value="@CadeteriaMVC.Entidades.Cadete.Vehiculo.Bicicleta">@CadeteriaMVC.Entidades.Cadete.Vehiculo.Bicicleta</option>
+        </select>
+    </div>
+
+    <input type ="text" asp-for="id" value="@Model.id" hidden />
+    <input type ="submit" />
+</form>
