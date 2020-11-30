@@ -152,12 +152,12 @@ namespace CadeteriaMVC.Models
 		{
 			List<CadeteriaMVC.Entidades.Pedido> ListaPedidos = new List<CadeteriaMVC.Entidades.Pedido>();
 
-			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\cadeteria.db");
+			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
 			var conection = new SQLiteConnection(path);
 			conection.Open();
 
 			var command = conection.CreateCommand();
-			string instruccion = "select * from pedidos inner join estados using(idEstado) inner join tipospedido using(idTipo) where idCadete = @Id";
+			string instruccion = "select * from pedidos inner join estados using(idEstado) inner join tipopedidos using(idTipo) where idCadete = @Id";
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@Id", C.id);
 

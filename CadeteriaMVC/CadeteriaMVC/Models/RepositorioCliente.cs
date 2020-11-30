@@ -81,7 +81,7 @@ namespace CadeteriaMVC.Models
             var command = conection.CreateCommand();
             string instruccion = "delete from clientes where idCliente = @id;";
             command.CommandText = instruccion;
-            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@idCliente", id);
             command.ExecuteNonQuery();
 
             conection.Close();
