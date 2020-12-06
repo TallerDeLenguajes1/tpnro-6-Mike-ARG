@@ -29,7 +29,7 @@ namespace CadeteriaMVC.Controllers
 
         public IActionResult AltaCliente()
         {
-            return View(new CadeteriaMVC.Entidades.Cliente("","",1234));
+            return View(new CadeteriaMVC.Entidades.Cliente("", "", 1234));
         }
 
         [HttpPost]
@@ -52,35 +52,14 @@ namespace CadeteriaMVC.Controllers
 
         public IActionResult UpdateCliente(int id)
         {
-            RepositorioCliente R = new RepositorioCliente();
-            CadeteriaMVC.Entidades.Cliente C = R.Buscar(id);
-            if (C != null)
-            {
-
-                return View(C);
-            }
-            else
-            {
-                return Content("No se encontró ningun usuario con ese id");
-            }
+            return View(new CadeteriaMVC.Entidades.Cliente { Id = id });
         }
-
-        [HttpPost]
         public IActionResult ModificarCliente(CadeteriaMVC.Entidades.Cliente C)
         {
-            string mensaje;
-            if (ModelState.IsValid)
-            {
-                RepositorioCliente R = new RepositorioCliente();
-                R.Update(C);
-                mensaje = "Se modificó con exito el cliente";
-            }
-            else
-            {
-                mensaje = "Hubo un error, intente de nuevo";
-            }
+            RepositorioCliente R = new RepositorioCliente();
+            R.Update(C);
 
-            return Content(mensaje);
+            return Redirect("/Clientes/Index");
         }
 
         public IActionResult BajaCliente(int id)
@@ -104,7 +83,7 @@ namespace CadeteriaMVC.Controllers
             try
             {
                 RepositorioCliente R = new RepositorioCliente();
-                R.Baja(C.id);
+                R.Baja(C.Id);
                 mensaje = "Se elimino con exito el cliente";
             }
             catch (Exception)

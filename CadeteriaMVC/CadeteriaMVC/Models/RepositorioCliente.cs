@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
+using CadeteriaMVC.Entidades;
 
 namespace CadeteriaMVC.Models
 {
@@ -26,10 +27,10 @@ namespace CadeteriaMVC.Models
             {
                 CadeteriaMVC.Entidades.Cliente C = new CadeteriaMVC.Entidades.Cliente();
 
-                C.id = Convert.ToInt32(reader["idCliente"]);
-                C.nombre = reader["nombre"].ToString();
-                C.direccion = reader["direccion"].ToString();
-                C.telefono = (long)Convert.ToDouble(reader["telefono"]);
+                C.Id = Convert.ToInt32(reader["idCliente"]);
+                C.Nombre = reader["nombre"].ToString();
+                C.Direccion = reader["direccion"].ToString();
+                C.Telefono = (long)Convert.ToDouble(reader["telefono"]);
                 ListaClientes.Add(C);
             }
 
@@ -46,30 +47,38 @@ namespace CadeteriaMVC.Models
             var command = conection.CreateCommand();
             string instruccion = "insert into clientes(nombre, direccion, telefono) values (@nombre, @direccion, @telefono);";
             command.CommandText = instruccion;
-            command.Parameters.AddWithValue("@nombre", C.nombre);
-            command.Parameters.AddWithValue("@direccion", C.direccion);
-            command.Parameters.AddWithValue("@telefono", C.telefono);
+            command.Parameters.AddWithValue("@id", C.Id);
+            command.Parameters.AddWithValue("@nombre", C.Nombre);
+            command.Parameters.AddWithValue("@direccion", C.Direccion);
+            command.Parameters.AddWithValue("@telefono", C.Telefono);
             command.ExecuteNonQuery();
 
             conection.Close();
         }
 
-        public void Update(CadeteriaMVC.Entidades.Cliente C)
+        public void Update(Cliente C)
         {
-            string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
-            var conection = new SQLiteConnection(path);
-            conection.Open();
+            try
+            {
+                string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
+                var conection = new SQLiteConnection(path);
+                conection.Open();
 
-            var command = conection.CreateCommand();
-            string instruccion = "update clientes SET nombre = @nombre, direccion = @direccion, telefono = @telefono where idCliente = @id;";
-            command.CommandText = instruccion;
-            command.Parameters.AddWithValue("@id", C.id);
-            command.Parameters.AddWithValue("@nombre", C.nombre);
-            command.Parameters.AddWithValue("@direccion", C.direccion);
-            command.Parameters.AddWithValue("@telefono", C.telefono);
-            command.ExecuteNonQuery();
+                var command = conection.CreateCommand();
+                command.CommandText = "update clientes SET nombre = @nombre, direccion = @direccion, telefono = @telefono where idCliente = @id;";
+                command.Parameters.AddWithValue("@id", C.Id);
+                command.Parameters.AddWithValue("@nombre", C.Nombre);
+                command.Parameters.AddWithValue("@direccion", C.Direccion);
+                command.Parameters.AddWithValue("@telefono", C.Telefono);
+                command.ExecuteNonQuery();
 
-            conection.Close();
+                conection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
         }
 
         public void Baja(int id)
@@ -79,7 +88,7 @@ namespace CadeteriaMVC.Models
             conection.Open();
 
             var command = conection.CreateCommand();
-            string instruccion = "delete from clientes where idCliente = @id;";
+            string instruccion = "delete from clientes where idCliente = @idCliente;";
             command.CommandText = instruccion;
             command.Parameters.AddWithValue("@idCliente", id);
             command.ExecuteNonQuery();
@@ -103,10 +112,10 @@ namespace CadeteriaMVC.Models
             var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                C.id = Convert.ToInt32(reader["idCliente"]);
-                C.nombre = reader["nombre"].ToString();
-                C.direccion = reader["direccion"].ToString();
-                C.telefono = (long)Convert.ToDouble(reader["telefono"]);
+                C.Id = Convert.ToInt32(reader["idCliente"]);
+                C.Nombre = reader["nombre"].ToString();
+                C.Direccion = reader["direccion"].ToString();
+                C.Telefono = (long)Convert.ToDouble(reader["telefono"]);
             }
 
             conection.Close();

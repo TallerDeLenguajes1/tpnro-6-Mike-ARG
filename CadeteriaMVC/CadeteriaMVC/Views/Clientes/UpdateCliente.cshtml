@@ -3,23 +3,21 @@
 
 <form asp-action="ModificarCliente" method="post">
     <div class="container">
-        <label asp-for="nombre">Nombre</label>
-        <input type="text" asp-for="nombre" value="@Model.nombre" />
-        <span asp-validation-for="nombre"></span>
+        <label asp-for="Nombre">Nombre</label>
+        <input type="text" asp-for="Nombre" value="@Model.Nombre" />
     </div>
 
     <div class="container">
-        <label asp-for="direccion">Direccion</label>
-        <input type="text" asp-for="direccion" value="@Model.direccion" />
-        <span asp-validation-for="direccion" />
+        <label asp-for="Direccion">Direccion</label>
+        <input type="text" asp-for="Direccion" value="@Model.Direccion" />
     </div>
 
     <div class="container">
-        <label asp-for="telefono">Telefono</label>
-        <input type="text" asp-for="telefono" value="@Model.telefono" />
+        <label asp-for="Telefono">Telefono</label>
+        <input type="text" asp-for="Telefono" value="@Model.Telefono" />
     </div>
 
-    <input type="text" asp-for="id" value="@Model.id" hidden />
+    <input type="hidden" asp-for="Id" value="@Model.Id" />
 
-    <input type="submit" />
+    <button type="submit">Enviar</button>
 </form>

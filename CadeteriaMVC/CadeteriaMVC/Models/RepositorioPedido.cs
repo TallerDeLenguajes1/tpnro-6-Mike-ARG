@@ -7,8 +7,8 @@ using System.IO;
 
 namespace CadeteriaMVC.Models
 {
-    public class RepositorioPedido
-    {
+	public class RepositorioPedido
+	{
 		public static Random random = new Random(Environment.TickCount);
 
 		public List<CadeteriaMVC.Entidades.Pedido> GetAll()
@@ -29,7 +29,7 @@ namespace CadeteriaMVC.Models
 				CadeteriaMVC.Entidades.Pedido C = new CadeteriaMVC.Entidades.Pedido();
 
 				C.id = Convert.ToInt32(reader["idPedido"]);
-				C.cliente.id = Convert.ToInt32(reader["idCliente"]);
+				C.cliente.Id = Convert.ToInt32(reader["idCliente"]);
 				//C = Convert.ToInt32(reader["idCadete"]);
 				C.observacion = reader["observacion"].ToString();
 				C.estado = (CadeteriaMVC.Entidades.Pedido.Estado)reader["estado"];
@@ -80,7 +80,7 @@ namespace CadeteriaMVC.Models
 			instruccion = "insert into pedidos(observacion, idCliente, idCadete, idEstado, idTipo, cupon) values (@Observacion, @IdCliente, @IdCadete, @Estado, @Tipo, @Cupon);";
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@Observacion", C.observacion);
-			command.Parameters.AddWithValue("@IdCliente", C.cliente.id);
+			command.Parameters.AddWithValue("@IdCliente", C.cliente.Id);
 			//command.Parameters.AddWithValue("@IdCadete", C.IdCadete);
 			command.Parameters.AddWithValue("@Estado", idEstado);
 			command.Parameters.AddWithValue("@Tipo", idTipo);
@@ -128,7 +128,7 @@ namespace CadeteriaMVC.Models
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@Id", C.id);
 			command.Parameters.AddWithValue("@Observacion", C.observacion);
-			command.Parameters.AddWithValue("@IdCliente", C.cliente.id);
+			command.Parameters.AddWithValue("@IdCliente", C.cliente.Id);
 			//command.Parameters.AddWithValue("@IdCadete", C.);
 			command.Parameters.AddWithValue("@Estado", idEstado);
 			command.Parameters.AddWithValue("@Tipo", idTipo);
@@ -170,7 +170,7 @@ namespace CadeteriaMVC.Models
 			while (reader.Read())
 			{
 				C.id = Convert.ToInt32(reader["idPedido"]);
-				C.cliente.id = Convert.ToInt32(reader["idCliente"]);
+				C.cliente.Id = Convert.ToInt32(reader["idCliente"]);
 				//C.IdCadete = Convert.ToInt32(reader["idCadete"]);
 				C.observacion = reader["observacion"].ToString();
 				C.estado = (CadeteriaMVC.Entidades.Pedido.Estado)reader["estado"];
@@ -188,33 +188,28 @@ namespace CadeteriaMVC.Models
 			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\cadeteria.db");
 			var conection = new SQLiteConnection(path);
 			conection.Open();
-
 			//consigo el id del tipo que tiene el pedido
 			var command = conection.CreateCommand();
 			string instruccion = "select idTipo from tipospedido where tipo LIKE @Tipo";
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@Tipo", P.Tipo);
-
 			int idTipo = 0;
 			var reader = command.ExecuteReader();
 			while (reader.Read())
 			{
 				idTipo = Convert.ToInt32(reader["idTipo"]);
 			}
-
 			//agarro todos los cadetes que pueden llevar ese pedido
 			command = conection.CreateCommand();
 			instruccion = "select idCadete from cadetes where idVehiculo = @IdTipo";
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@IdTipo", idTipo);
-
 			List<int> CadetesDisponibles = new List<int>();
 			reader = command.ExecuteReader();
 			while (reader.Read())
 			{
 				CadetesDisponibles.Add(Convert.ToInt32(reader["idCadete"]));
 			}
-
 			//asigno el cadete de forma aleatoria
 			try
 			{
@@ -224,7 +219,6 @@ namespace CadeteriaMVC.Models
 			{
 				P.IdCadete = 0;
 			}
-
 			return P;
 		}*/
 	}

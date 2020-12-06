@@ -8,32 +8,32 @@
 
 <form asp-action="ModificarCadete" method="post">
     <div class="container">
-        <label asp-for="nombre">Nombre</label>
-        <input type="text" asp-for="nombre" />
-        <span asp-validation-for="nombre"></span>
+        <label asp-for="Nombre">Nombre</label>
+        <input type="text" asp-for="Nombre" />
+        <span asp-validation-for="Nombre"></span>
     </div>
 
     <div class="container">
-        <label asp-for="direccion">Dirección</label>
-        <input type="text" asp-for="direccion" />
-        <span asp-validation-for="direccion"></span>
+        <label asp-for="Direccion">Dirección</label>
+        <input type="text" asp-for="Direccion" />
+        <span asp-validation-for="Direccion"></span>
     </div>
 
     <div class="container">
-        <label asp-for="telefono">Teléfono</label>
-        <input type="text" asp-for="telefono" />
-        <span asp-validation-for="telefono"></span>
+        <label asp-for="Telefono">Teléfono</label>
+        <input type="text" asp-for="Telefono" />
+        <span asp-validation-for="Telefono"></span>
     </div>
 
     <div class="container">
-        <label asp-for="vehiculo">Vehiculo</label>
-        <select asp-for="vehiculo">
+        <label asp-for="TipoVehiculo">Vehiculo</label>
+        <select asp-for="TipoVehiculo">
             <option value="@CadeteriaMVC.Entidades.Cadete.Vehiculo.Auto">@CadeteriaMVC.Entidades.Cadete.Vehiculo.Auto</option>
             <option value="@CadeteriaMVC.Entidades.Cadete.Vehiculo.Moto">@CadeteriaMVC.Entidades.Cadete.Vehiculo.Moto</option>
             <option value="@CadeteriaMVC.Entidades.Cadete.Vehiculo.Bicicleta">@CadeteriaMVC.Entidades.Cadete.Vehiculo.Bicicleta</option>
         </select>
     </div>
 
-    <input type ="text" asp-for="id" value="@Model.id" hidden />
-    <input type ="submit" />
+    <input type="text" asp-for="Id" value="@Model.Id" hidden />
+    <input type="submit" />
 </form>

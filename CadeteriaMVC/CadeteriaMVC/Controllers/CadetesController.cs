@@ -9,22 +9,22 @@ using System.Data.SQLite;
 
 namespace CadeteriaMVC.Controllers
 {
-    public class CadetesController : Controller
-    {
-        private readonly ILogger<ClientesController> _logger;
-        private List<CadeteriaMVC.Entidades.Cadete> ListaCadetes;
-        public CadetesController(ILogger<ClientesController> logger)
-        {
-            _logger = logger;
-            ListaCadetes = new List<CadeteriaMVC.Entidades.Cadete>();
-        }
+	public class CadetesController : Controller
+	{
+		private readonly ILogger<ClientesController> _logger;
+		private List<CadeteriaMVC.Entidades.Cadete> ListaCadetes;
+		public CadetesController(ILogger<ClientesController> logger)
+		{
+			_logger = logger;
+			ListaCadetes = new List<CadeteriaMVC.Entidades.Cadete>();
+		}
 
-        public IActionResult Index()
-        {
-            RepositorioCadete R = new RepositorioCadete();
-            ListaCadetes = R.GetAll();
-            return View(ListaCadetes);
-        }
+		public IActionResult Index()
+		{
+			RepositorioCadete R = new RepositorioCadete();
+			ListaCadetes = R.GetAll();
+			return View(ListaCadetes);
+		}
 
 		public IActionResult AltaCadete()
 		{
@@ -102,7 +102,7 @@ namespace CadeteriaMVC.Controllers
 			try
 			{
 				RepositorioCadete R = new RepositorioCadete();
-				R.Baja(C.id);
+				R.Baja(C.Id);
 				mensaje = "Se elimino con exito el cadete";
 			}
 			catch (Exception)
@@ -117,7 +117,7 @@ namespace CadeteriaMVC.Controllers
 		{
 			CadeteriaMVC.Entidades.Cadete C = new RepositorioCadete().Buscar(id);
 			List<CadeteriaMVC.Entidades.Pedido> ListaPedidos = new RepositorioCadete().GetPedidos(C);
-			ViewBag.Nombre = C.nombre;
+			ViewBag.Nombre = C.Nombre;
 
 			return View(ListaPedidos);
 		}

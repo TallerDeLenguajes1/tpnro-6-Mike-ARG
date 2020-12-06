@@ -7,28 +7,26 @@ namespace CadeteriaMVC.Entidades
 {
     public abstract class Persona
     {
-        public static int contador = 1;
-        public int id;
-        public string nombre;
-        public string direccion;
-        public long telefono;
+        private string nombre;
+        private string direccion;
+        private long telefono;
         public List<Pedido> listaPedidos;
+
+        public string Nombre { get => nombre; set => nombre = value; }
+        public string Direccion { get => direccion; set => direccion = value; }
+        public long Telefono { get => telefono; set => telefono = value; }
 
         public Persona(string nombre, string direccion, long telefono)
         {
-            id = contador;
-            contador++;
-            this.nombre = nombre;
-            this.direccion = direccion;
-            this.telefono = telefono;
+            this.Nombre = nombre;
+            this.Direccion = direccion;
+            this.Telefono = telefono;
             this.listaPedidos = new List<Pedido>();
         }
         public Persona()
         {
-            this.id = contador;
-            contador++;
-            this.nombre = "";
-            this.direccion = "";
+            this.Nombre = "";
+            this.Direccion = "";
             //this.telefono;
             listaPedidos = new List<Pedido>();
         }
@@ -38,16 +36,20 @@ namespace CadeteriaMVC.Entidades
 
     public class Cliente : Persona
     {
+        private int id;
+
+        public int Id { get => id; set => id = value; }
+
         public Cliente(string nombre, string direccion, long telefono) : base(nombre, direccion, telefono)
         {
-
         }
 
-        public Cliente() 
+        public Cliente()
         {
-            this.nombre = "";
-            this.direccion = "";
-            this.telefono = 1234;
+            this.Id = 0;
+            this.Nombre = "";
+            this.Direccion = "";
+            this.Telefono = 1234;
         }
 
         public override int ContarPedidos()
@@ -63,7 +65,7 @@ namespace CadeteriaMVC.Entidades
 
     public class Pedido
     {
-        public static int contador = 0;
+        public int contador;
         public int id;
         public string observacion;
         public Cliente cliente;
@@ -84,7 +86,7 @@ namespace CadeteriaMVC.Entidades
             this.costoPedido = CostoPedido();
         }
 
-        public Pedido() 
+        public Pedido()
         {
             this.id = contador;
             contador++;
@@ -155,7 +157,7 @@ namespace CadeteriaMVC.Entidades
         {
             Console.WriteLine("ID del pedido: " + this.id);
             Console.WriteLine("Observación: " + this.observacion);
-            Console.WriteLine("Nombre del cliente: " + this.cliente.nombre);
+            Console.WriteLine("Nombre del cliente: " + this.cliente.Nombre);
             Console.WriteLine("Tipo de pedido: " + this.tipoPedido.ToString());
             Console.WriteLine("¿Cupón?: " + this.tieneCupon.ToString());
             Console.WriteLine("Costo del pedido: " + this.CostoPedido());
@@ -169,8 +171,9 @@ namespace CadeteriaMVC.Entidades
     {
 
         public Vehiculo TipoVehiculo { get; set; }
-        public string vehiculo;
+        public int Id { get => id; set => id = value; }
 
+        private int id;
         public Cadete() : base()
         {
             this.TipoVehiculo = Vehiculo.Moto;
@@ -187,7 +190,7 @@ namespace CadeteriaMVC.Entidades
                 case Pedido.TipoPedido.Express:
                     if (this.TipoVehiculo == Vehiculo.Moto)
                     {
-                        vehiculo = "Moto";
+                        //TipoVehiculo = Vehiculo.;
                         ped.costoPedido += ped.costoPedido * 0.20;
                         this.listaPedidos.Add(ped);
                     }
@@ -195,7 +198,7 @@ namespace CadeteriaMVC.Entidades
                 case Pedido.TipoPedido.Delicado:
                     if (this.TipoVehiculo == Vehiculo.Auto)
                     {
-                        vehiculo = "Auto";
+                        //vehiculo = "Auto";
                         ped.costoPedido += ped.costoPedido * 0.25;
                         this.listaPedidos.Add(ped);
                     }
@@ -203,7 +206,7 @@ namespace CadeteriaMVC.Entidades
                 case Pedido.TipoPedido.Ecologico:
                     if (this.TipoVehiculo == Vehiculo.Bicicleta)
                     {
-                        vehiculo = "Bicicleta";
+                        //vehiculo = "Bicicleta";
                         ped.costoPedido += ped.costoPedido * 0.05;
                         this.listaPedidos.Add(ped);
                     }
@@ -240,14 +243,14 @@ namespace CadeteriaMVC.Entidades
 
         public int ID()
         {
-            return id;
+            return Id;
         }
 
         public void MostrarDatos()
         {
             Console.WriteLine("ID del cadete: " + ID());
-            Console.WriteLine("Nombre del cadete: " + this.nombre);
-            Console.WriteLine("Tipo de vehículo: " + this.vehiculo);
+            Console.WriteLine("Nombre del cadete: " + this.Nombre);
+            //Console.WriteLine("Tipo de vehículo: " + this.vehiculo);
             Console.WriteLine("Cantidad de pedidos entregados: " + this.CantidadEntregados());
             Console.WriteLine("Jornal a cobrar: " + this.CalcularJornal());
             Console.WriteLine("");
@@ -260,12 +263,12 @@ namespace CadeteriaMVC.Entidades
 
         public enum Vehiculo
         {
-            Bicicleta = 5,
-            Auto = 25,
-            Moto = 20
+            Bicicleta,
+            Auto,
+            Moto
         }
 
-        public List<Vehiculo> GetVehiculos() 
+        public List<Vehiculo> GetVehiculos()
         {
             List<Vehiculo> listaVehiculos = new List<Vehiculo>();
             listaVehiculos.Add(Vehiculo.Auto);
@@ -338,11 +341,10 @@ namespace CadeteriaMVC.Entidades
             return nombres[rand.Next(nombres.Length)] + " " + apellidos[rand.Next(apellidos.Length)];
         }
 
-        public static List<Pedido> GenerarPedidos(int numPedidos)
+        /*public static List<Pedido> GenerarPedidos(int numPedidos)
         {
             List<Pedido> listaPedidos = new List<Pedido>();
             Random rand = new Random();
-
             try
             {
                 while (numPedidos > 0)
@@ -358,9 +360,8 @@ namespace CadeteriaMVC.Entidades
             {
                 Console.WriteLine("Error al generar pedidos: " + ex.Message);
             }
-
             return listaPedidos;
-        }
+        }*/
 
         public static List<Cadete> GenerarCadetes(int numCadetes, Cadeteria cadeteria)
         {

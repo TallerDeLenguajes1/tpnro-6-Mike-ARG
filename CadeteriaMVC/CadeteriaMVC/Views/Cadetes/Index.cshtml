@@ -20,14 +20,14 @@
     @foreach (CadeteriaMVC.Entidades.Cadete C in Model)
     {
         <tr>
-            <td>@C.nombre</td>
-            <td>@C.direccion</td>
-            <td>@C.telefono</td>
-            <td>@C.vehiculo</td>
+            <td>@C.Nombre</td>
+            <td>@C.Direccion</td>
+            <td>@C.Telefono</td>
+            <td>@C.TipoVehiculo</td>
             <td>@C.CalcularJornal()</td>
-            <td>@Html.ActionLink("Ver pedidos", "MostrarPedidos", new { id = C.id })</td>
-            <td>@Html.ActionLink("Modificar", "UpdateCadete", new { id = C.id })</td>
-            <td>@Html.ActionLink("Eliminar", "BajaCadete", new { id = C.id })</td>
+            <td>@Html.ActionLink("Ver pedidos", "MostrarPedidos", new { id = C.Id })</td>
+            <td>@Html.ActionLink("Modificar", "UpdateCadete", new { id = C.Id })</td>
+            <td>@Html.ActionLink("Eliminar", "BajaCadete", new { id = C.Id })</td>
         </tr>
     }
 </table>

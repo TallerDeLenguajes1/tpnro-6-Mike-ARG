@@ -12,11 +12,16 @@
     @foreach (CadeteriaMVC.Entidades.Cliente C in Model)
     {
         <tr>
-            <td>@C.nombre</td>
-            <td>@C.direccion</td>
-            <td>@C.telefono</td>
-            <td>@Html.ActionLink("Modificar", "UpdateCliente", new { id = C.id })</td>
-            <td>@Html.ActionLink("Eliminar", "BajaCliente", new { id = C.id })</td>
+            <td>@C.Nombre</td>
+            <td>@C.Direccion</td>
+            <td>@C.Telefono</td>
+            <td>
+                <form asp-action="UpdateCliente" method="post" class="form-group">
+                    <input type="hidden" name="id" value="@C.Id" />
+                    <button type="submit" class="btn btn-outline-info waves-effect">Modificar</button>
+                </form>
+            </td>
+            <td>@Html.ActionLink("Eliminar", "BajaCliente", new { id = C.Id })</td>
         </tr>
     }
 </table>

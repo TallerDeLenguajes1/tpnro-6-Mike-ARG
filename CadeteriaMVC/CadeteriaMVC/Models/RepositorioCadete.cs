@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using CadeteriaMVC.Entidades;
 using System.IO;
 
 namespace CadeteriaMVC.Models
 {
-    public class RepositorioCadete
-    {
+	public class RepositorioCadete
+	{
 		public List<CadeteriaMVC.Entidades.Cadete> GetAll()
 		{
 			List<CadeteriaMVC.Entidades.Cadete> ListaCadetes = new List<CadeteriaMVC.Entidades.Cadete>();
@@ -18,7 +19,7 @@ namespace CadeteriaMVC.Models
 			conection.Open();
 
 			var command = conection.CreateCommand();
-			string instruccion = "select * from cadetes inner join vehiculos using(idVehiculo)";
+			string instruccion = "select * from cadetes";
 			command.CommandText = instruccion;
 
 			var reader = command.ExecuteReader();
@@ -26,11 +27,11 @@ namespace CadeteriaMVC.Models
 			{
 				CadeteriaMVC.Entidades.Cadete C = new CadeteriaMVC.Entidades.Cadete();
 
-				C.id = Convert.ToInt32(reader["idCadete"]);
-				C.nombre = reader["nombre"].ToString();
-				C.direccion = reader["direccion"].ToString();
-				C.telefono = (long)reader["telefono"];
-				C.vehiculo = reader["vehiculo"].ToString();
+				C.Id = Convert.ToInt32(reader["idCadete"]);
+				C.Nombre = reader["nombre"].ToString();
+				C.Direccion = reader["direccion"].ToString();
+				C.Telefono = (long)Convert.ToDouble(reader["telefono"]);
+				C.TipoVehiculo = (Cadete.Vehiculo)Convert.ToInt32(reader["vehiculo"]);
 				ListaCadetes.Add(C);
 			}
 
@@ -44,28 +45,14 @@ namespace CadeteriaMVC.Models
 			var conection = new SQLiteConnection(path);
 			conection.Open();
 
-			//busco el id del vehiculo para insertarlo en la tabla
+
 			var command = conection.CreateCommand();
-			string instruccion = "select idVehiculo from vehiculos where vehiculo LIKE @vehiculo";
+			string instruccion = "insert into cadetes(nombre, direccion, telefono, vehiculo) values (@Nombre, @Direccion, @Telefono, @vehiculo);";
 			command.CommandText = instruccion;
+			command.Parameters.AddWithValue("@nombre", C.Nombre);
+			command.Parameters.AddWithValue("@direccion", C.Direccion);
+			command.Parameters.AddWithValue("@telefono", C.Telefono);
 			command.Parameters.AddWithValue("@vehiculo", C.TipoVehiculo);
-
-			int idVehiculo = 0;
-
-			var reader = command.ExecuteReader();
-			while (reader.Read())
-			{
-				idVehiculo = Convert.ToInt32(reader["idVehiculo"]);
-			}
-
-			//ahora si inserto el cadete
-			command = conection.CreateCommand();
-			instruccion = "insert into cadetes(nombre, direccion, telefono, idVehiculo) values (@Nombre, @Direccion, @Telefono, @IdVehiculo);";
-			command.CommandText = instruccion;
-			command.Parameters.AddWithValue("@nombre", C.nombre);
-			command.Parameters.AddWithValue("@direccion", C.direccion);
-			command.Parameters.AddWithValue("@telefono", C.telefono);
-			command.Parameters.AddWithValue("@idVehiculo", idVehiculo);
 			command.ExecuteNonQuery();
 
 			conection.Close();
@@ -77,29 +64,15 @@ namespace CadeteriaMVC.Models
 			var conection = new SQLiteConnection(path);
 			conection.Open();
 
-			//busco el id del vehiculo para insertarlo en la tabla
+
 			var command = conection.CreateCommand();
-			string instruccion = "select idVehiculo from vehiculos where vehiculo LIKE @Vehiculo";
+			string instruccion = "update cadetes SET nombre = @Nombre, direccion = @Direccion, telefono = @Telefono, vehiculo = @vehiculo where idCadete = @Id;";
 			command.CommandText = instruccion;
+			command.Parameters.AddWithValue("@id", C.Id);
+			command.Parameters.AddWithValue("@nombre", C.Nombre);
+			command.Parameters.AddWithValue("@direccion", C.Direccion);
+			command.Parameters.AddWithValue("@telefono", C.Telefono);
 			command.Parameters.AddWithValue("@vehiculo", C.TipoVehiculo);
-
-			int idVehiculo = 0;
-
-			var reader = command.ExecuteReader();
-			while (reader.Read())
-			{
-				idVehiculo = Convert.ToInt32(reader["idVehiculo"]);
-			}
-
-			//ahora si inserto el cadete
-			command = conection.CreateCommand();
-			instruccion = "update cadetes SET nombre = @Nombre, direccion = @Direccion, telefono = @Telefono, idVehiculo = @IdVehiculo where idCadete = @Id;";
-			command.CommandText = instruccion;
-			command.Parameters.AddWithValue("@id", C.id);
-			command.Parameters.AddWithValue("@nombre", C.nombre);
-			command.Parameters.AddWithValue("@direccion", C.direccion);
-			command.Parameters.AddWithValue("@telefono", C.telefono);
-			command.Parameters.AddWithValue("@idVehiculo", idVehiculo);
 			command.ExecuteNonQuery();
 
 			conection.Close();
@@ -129,18 +102,18 @@ namespace CadeteriaMVC.Models
 			conection.Open();
 
 			var command = conection.CreateCommand();
-			string instruccion = "select * from cadetes inner join vehiculos using(idVehiculo) where idCadete = @id";
+			string instruccion = "select * from cadetes where idCadete = @id";
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@id", id);
 
 			var reader = command.ExecuteReader();
 			while (reader.Read())
 			{
-				C.id = Convert.ToInt32(reader["idCadete"]);
-				C.nombre = reader["nombre"].ToString();
-				C.direccion = reader["direccion"].ToString();
-				C.telefono = (long)reader["telefono"];
-				C.vehiculo = reader["vehiculo"].ToString();
+				C.Id = Convert.ToInt32(reader["idCadete"]);
+				C.Nombre = reader["nombre"].ToString();
+				C.Direccion = reader["direccion"].ToString();
+				C.Telefono = (long)Convert.ToDouble(reader["telefono"]);
+				C.TipoVehiculo = (Cadete.Vehiculo)Convert.ToInt32(reader["vehiculo"]);
 				//C.RecargaV = Convert.ToDouble(reader["aumento"]);
 			}
 
@@ -159,7 +132,7 @@ namespace CadeteriaMVC.Models
 			var command = conection.CreateCommand();
 			string instruccion = "select * from pedidos inner join estados using(idEstado) inner join tipopedidos using(idTipo) where idCadete = @Id";
 			command.CommandText = instruccion;
-			command.Parameters.AddWithValue("@Id", C.id);
+			command.Parameters.AddWithValue("@Id", C.Id);
 
 			var reader = command.ExecuteReader();
 			while (reader.Read())
@@ -167,7 +140,7 @@ namespace CadeteriaMVC.Models
 				CadeteriaMVC.Entidades.Pedido P = new CadeteriaMVC.Entidades.Pedido();
 
 				P.id = Convert.ToInt32(reader["idPedido"]);
-				P.cliente.id = Convert.ToInt32(reader["idCliente"]);
+				P.cliente.Id = Convert.ToInt32(reader["idCliente"]);
 				//P. = Convert.ToInt32(reader["idCadete"]);
 				P.observacion = reader["observacion"].ToString();
 				//P.estado = reader["estado"].ToString();
