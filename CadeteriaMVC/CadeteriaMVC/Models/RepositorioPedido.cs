@@ -28,7 +28,7 @@ namespace CadeteriaMVC.Models
 			{
 				CadeteriaMVC.Entidades.Pedido C = new CadeteriaMVC.Entidades.Pedido();
 
-				C.id = Convert.ToInt32(reader["idPedido"]);
+				C.Id = Convert.ToInt32(reader["idPedido"]);
 				C.cliente.Id = Convert.ToInt32(reader["idCliente"]);
 				//C = Convert.ToInt32(reader["idCadete"]);
 				C.observacion = reader["observacion"].ToString();
@@ -126,7 +126,7 @@ namespace CadeteriaMVC.Models
 			command = conection.CreateCommand();
 			instruccion = "update pedidos set observacion = @Observacion, idCliente = @IdCliente, idCadete = @IdCadete, idEstado = @Estado, idTipo = @Tipo, cupon = @Cupon where idPedido = @Id;";
 			command.CommandText = instruccion;
-			command.Parameters.AddWithValue("@Id", C.id);
+			command.Parameters.AddWithValue("@Id", C.Id);
 			command.Parameters.AddWithValue("@Observacion", C.observacion);
 			command.Parameters.AddWithValue("@IdCliente", C.cliente.Id);
 			//command.Parameters.AddWithValue("@IdCadete", C.);
@@ -169,7 +169,7 @@ namespace CadeteriaMVC.Models
 			var reader = command.ExecuteReader();
 			while (reader.Read())
 			{
-				C.id = Convert.ToInt32(reader["idPedido"]);
+				C.Id = Convert.ToInt32(reader["idPedido"]);
 				C.cliente.Id = Convert.ToInt32(reader["idCliente"]);
 				//C.IdCadete = Convert.ToInt32(reader["idCadete"]);
 				C.observacion = reader["observacion"].ToString();

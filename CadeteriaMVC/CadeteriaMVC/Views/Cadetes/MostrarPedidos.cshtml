@@ -20,7 +20,7 @@
 
     @foreach (CadeteriaMVC.Entidades.Pedido C in Model)
     {
-        //CadeteriaMVC.Entidades.Cliente Cl = new RepositorioCliente().Buscar(C.IdCliente);
+        CadeteriaMVC.Entidades.Cliente Cl = new RepositorioCliente().Buscar(C.Id);
         <tr>
             <td>@C.cliente.Nombre</td>
             <td>@C.cliente.Direccion</td>
@@ -29,8 +29,8 @@
             <td>@C.tipoPedido</td>
             <td>@C.tieneCupon</td>
             <td>@C.costoPedido</td>
-            <td>@Html.ActionLink("Modificar", "UpdatePedido", "Pedidos", new { id = C.id })</td>
-            <td>@Html.ActionLink("Eliminar", "BajaPedido", "Pedidos", new { id = C.id })</td>
+            <td>@Html.ActionLink("Modificar", "UpdatePedido", "Pedidos", new { id = C.Id })</td>
+            <td>@Html.ActionLink("Eliminar", "BajaPedido", "Pedidos", new { id = C.Id })</td>
         </tr>
     }
 </table>

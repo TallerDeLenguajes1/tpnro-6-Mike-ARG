@@ -1,0 +1,30 @@
+﻿@model CadeteriaMVC.Entidades.Pedido
+
+@{ViewData["Title"] = "Crear Pedido"; }
+
+<div class="text-center">
+    <h3>Crear pedido</h3>
+</div>
+
+<form asp-action="CrearPedido" method="post">
+    <div class="container">
+        <label asp-for="cliente.Nombre">Nombre del cliente</label>
+        <input type="text" asp-for="cliente.Nombre" />
+        <span asp-validation-for="cliente.Nombre"></span>
+    </div>
+
+    <div class="container">
+        <label asp-for="observacion">Observación</label>
+        <input type="text" asp-for="observacion" />
+        <span asp-validation-for="observacion"></span>
+    </div>
+
+    <div class="container">
+        <label asp-for="tipoPedido">Tipo de pedido</label>
+        <select asp-for="tipoPedido">
+            <option value="@CadeteriaMVC.Entidades.Pedido.TipoPedido.Delicado">@CadeteriaMVC.Entidades.Pedido.TipoPedido.Delicado</option>
+            <option value="@CadeteriaMVC.Entidades.Pedido.TipoPedido.Ecologico">@CadeteriaMVC.Entidades.Pedido.TipoPedido.Ecologico</option>
+            <option value="@CadeteriaMVC.Entidades.Pedido.TipoPedido.Express">@CadeteriaMVC.Entidades.Pedido.TipoPedido.Express</option>
+        </select>
+    </div>
+</form>

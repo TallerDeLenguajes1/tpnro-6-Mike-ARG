@@ -65,8 +65,8 @@ namespace CadeteriaMVC.Entidades
 
     public class Pedido
     {
-        public int contador;
-        public int id;
+        //public int contador;
+        private int id;
         public string observacion;
         public Cliente cliente;
         public Estado estado;
@@ -74,10 +74,12 @@ namespace CadeteriaMVC.Entidades
         public bool tieneCupon;
         public double costoPedido;
 
+        public int Id { get => id; set => id = value; }
+
         public Pedido(string obs, Cliente client, Estado est, TipoPedido tipoPedido, bool tieneCupon)
         {
-            this.id = contador;
-            contador++;
+            //this.Id = contador;
+            //contador++;
             this.observacion = obs;
             this.cliente = client;
             estado = est;
@@ -88,8 +90,8 @@ namespace CadeteriaMVC.Entidades
 
         public Pedido()
         {
-            this.id = contador;
-            contador++;
+            //this.Id = contador;
+            //contador++;
             this.observacion = "";
             this.cliente = new Cliente();
             estado = Estado.NoDisponible;
@@ -155,7 +157,7 @@ namespace CadeteriaMVC.Entidades
         }
         public void MostrarPedido()
         {
-            Console.WriteLine("ID del pedido: " + this.id);
+            Console.WriteLine("ID del pedido: " + this.Id);
             Console.WriteLine("Observación: " + this.observacion);
             Console.WriteLine("Nombre del cliente: " + this.cliente.Nombre);
             Console.WriteLine("Tipo de pedido: " + this.tipoPedido.ToString());
