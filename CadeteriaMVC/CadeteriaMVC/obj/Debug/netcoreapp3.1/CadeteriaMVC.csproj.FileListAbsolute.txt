@@ -111,8 +111,6 @@ C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\bin\Debug\netcoreapp3.1\runtimes\linux
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\SQLite.Interop.dll
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\SQLite.Interop.dll
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\SQLite.Interop.dll
-C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\CadeteriaMVC.csproj.CoreCompileInputs.cache
-C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\CadeteriaMVC.MvcApplicationPartsAssemblyInfo.cache
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\AltaCliente.cshtml.g.cs
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\BajaCliente.cshtml.g.cs
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Index.cshtml.g.cs
