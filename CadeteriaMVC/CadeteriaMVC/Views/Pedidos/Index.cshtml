@@ -24,8 +24,16 @@
             <td>@P.Id</td>
             <td>@P.observacion</td>
             <td>@P.cliente.Nombre</td>
+            <td>@P.tipoPedido</td>
             <td>@P.estado</td>
-            <td>@P.TieneCupon</td>
+            @{ if (P.TieneCupon == true)
+                {
+                    <td>Sí</td>
+                } else
+                {
+                    <td>No</td>
+                }
+             }
             <td>@P.CostoPedido()</td>
             <td>@Html.ActionLink("Modificar pedido", "UpdatePedido", new { id = P.Id })</td>
             <td>@Html.ActionLink("Cancelar pedido", "BajaPedido", new { id = P.Id })</td>

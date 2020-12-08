@@ -1,3 +1,33 @@
 ﻿@model CadeteriaMVC.Entidades.Pedido
 
+@{ ViewData["Title"] = "Modificar pedido"; }
 
+<div class="text-center">
+    <h3>Modificar pedido</h3>
+</div>
+
+<form asp-action="ModificarPedido" method="post">
+    <div class="container">
+        <label asp-for="observacion">Pedido</label>
+        <input type="text" asp-for="observacion" />
+        <span asp-validation-for="observacion"></span>
+    </div>
+
+    <div class="container">
+        <label asp-for="tipoPedido">Tipo de pedido</label>
+        <select asp-for="tipoPedido">
+            <option value="@CadeteriaMVC.Entidades.Pedido.TipoPedido.Delicado">@CadeteriaMVC.Entidades.Pedido.TipoPedido.Delicado</option>
+            <option value="@CadeteriaMVC.Entidades.Pedido.TipoPedido.Ecologico">@CadeteriaMVC.Entidades.Pedido.TipoPedido.Ecologico</option>
+            <option value="@CadeteriaMVC.Entidades.Pedido.TipoPedido.Express">@CadeteriaMVC.Entidades.Pedido.TipoPedido.Express</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <label asp-for="TieneCupon">Cupón</label>
+        <select asp-for="TieneCupon">
+            <option value="@true">Sí</option>
+            <option value="@false">No</option>
+        </select>
+    </div>
+    <input type="submit"/>
+</form>

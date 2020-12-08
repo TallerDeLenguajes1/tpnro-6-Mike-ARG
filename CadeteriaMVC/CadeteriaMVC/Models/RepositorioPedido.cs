@@ -96,7 +96,7 @@ namespace CadeteriaMVC.Models
 			conection.Open();
 
 			//consigo el id del tipo que tiene el pedido
-			var command = conection.CreateCommand();
+			/*var command = conection.CreateCommand();
 			string instruccion = "select idTipo from tipospedido where tipo LIKE @Tipo";
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@Tipo", C.tipoPedido);
@@ -120,17 +120,17 @@ namespace CadeteriaMVC.Models
 			{
 				idEstado = Convert.ToInt32(reader["idEstado"]);
 			}
-
+			*/
 			//update de la tabla
-			command = conection.CreateCommand();
-			instruccion = "update pedidos set observacion = @Observacion, idCliente = @IdCliente, idCadete = @IdCadete, idEstado = @Estado, idTipo = @Tipo, cupon = @Cupon where idPedido = @Id;";
+			var command = conection.CreateCommand();
+			string instruccion = "update pedidos set observacion = @Observacion, idCliente = @IdCliente, estado = @Estado, tipo = @Tipo, cupon = @Cupon where idPedido = @Id;";
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@Id", C.Id);
 			command.Parameters.AddWithValue("@Observacion", C.observacion);
 			command.Parameters.AddWithValue("@IdCliente", C.cliente.Id);
 			//command.Parameters.AddWithValue("@IdCadete", C.);
-			command.Parameters.AddWithValue("@Estado", idEstado);
-			command.Parameters.AddWithValue("@Tipo", idTipo);
+			command.Parameters.AddWithValue("@Estado", C.estado);
+			command.Parameters.AddWithValue("@Tipo", C.tipoPedido);
 			command.Parameters.AddWithValue("@Cupon", C.TieneCupon);
 			command.ExecuteNonQuery();
 

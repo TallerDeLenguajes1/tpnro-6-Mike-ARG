@@ -1,5 +1,13 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model CadeteriaMVC.Entidades.Pedido;
+
+@{ ViewData["Title"] = "Cancelar pedido"; }
+
+<div class="text-center">
+    <h3>Cancelar pedido</h3>
+</div>
+
+<form asp-action="EliminarPedido" method="post">
+    <input type="text" asp-for="Id" value="@Model.Id" hidden />
+    <h5>Seguro desea eliminar al pedido Nº @Model.Id?</h5>
+    <input type="submit" />
+</form>
