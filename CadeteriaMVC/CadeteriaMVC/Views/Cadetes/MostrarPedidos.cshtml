@@ -22,13 +22,13 @@
     {
         CadeteriaMVC.Entidades.Cliente Cl = new RepositorioCliente().Buscar(C.Id);
         <tr>
-            <td>@C.cliente.Nombre</td>
-            <td>@C.cliente.Direccion</td>
-            <td>@C.observacion</td>
-            <td>@C.estado</td>
-            <td>@C.tipoPedido</td>
+            <td>@C.Cliente.Nombre</td>
+            <td>@C.Cliente.Direccion</td>
+            <td>@C.Observacion</td>
+            <td>@C.Estado1</td>
+            <td>@C.TipoPedido1</td>
             <td>@C.TieneCupon</td>
-            <td>@C.costoPedido</td>
+            <td>@C.CostoPedido1</td>
             <td>@Html.ActionLink("Modificar", "UpdatePedido", "Pedidos", new { id = C.Id })</td>
             <td>@Html.ActionLink("Eliminar", "BajaPedido", "Pedidos", new { id = C.Id })</td>
         </tr>

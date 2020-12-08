@@ -29,11 +29,11 @@ namespace CadeteriaMVC.Models
 				CadeteriaMVC.Entidades.Pedido C = new CadeteriaMVC.Entidades.Pedido();
 
 				C.Id = Convert.ToInt32(reader["idPedido"]);
-				C.cliente.Id = Convert.ToInt32(reader["idCliente"]);
+				C.Cliente.Id = Convert.ToInt32(reader["idCliente"]);
 				//C = Convert.ToInt32(reader["idCadete"]);
-				C.observacion = reader["observacion"].ToString();
-				C.estado = (CadeteriaMVC.Entidades.Pedido.Estado)Convert.ToInt32(reader["estado"]);
-				C.tipoPedido = (CadeteriaMVC.Entidades.Pedido.TipoPedido)Convert.ToInt32(reader["tipo"]);
+				C.Observacion = reader["observacion"].ToString();
+				C.Estado1 = (CadeteriaMVC.Entidades.Pedido.Estado)Convert.ToInt32(reader["estado"]);
+				C.TipoPedido1 = (CadeteriaMVC.Entidades.Pedido.TipoPedido)Convert.ToInt32(reader["tipo"]);
 				C.TieneCupon = Convert.ToBoolean(reader["cupon"]);
 				//C. = Convert.ToDouble(reader["aumento"]);
 				ListaPedidos.Add(C);
@@ -78,11 +78,11 @@ namespace CadeteriaMVC.Models
 			var command = conection.CreateCommand();
 			string instruccion = "insert into pedidos(observacion, idCliente, estado, tipo, cupon) values (@Observacion, @IdCliente, @Estado, @Tipo, @Cupon);";
 			command.CommandText = instruccion;
-			command.Parameters.AddWithValue("@Observacion", C.observacion);
-			command.Parameters.AddWithValue("@IdCliente", C.cliente.Id);
+			command.Parameters.AddWithValue("@Observacion", C.Observacion);
+			command.Parameters.AddWithValue("@IdCliente", C.Cliente.Id);
 			//command.Parameters.AddWithValue("@IdCadete", C.IdCadete);
-			command.Parameters.AddWithValue("@Estado", C.estado);
-			command.Parameters.AddWithValue("@Tipo", C.tipoPedido);
+			command.Parameters.AddWithValue("@Estado", C.Estado1);
+			command.Parameters.AddWithValue("@Tipo", C.TipoPedido1);
 			command.Parameters.AddWithValue("@Cupon", C.TieneCupon);
 			command.ExecuteNonQuery();
 
@@ -126,11 +126,11 @@ namespace CadeteriaMVC.Models
 			string instruccion = "update pedidos set observacion = @Observacion, idCliente = @IdCliente, estado = @Estado, tipo = @Tipo, cupon = @Cupon where idPedido = @Id;";
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@Id", C.Id);
-			command.Parameters.AddWithValue("@Observacion", C.observacion);
-			command.Parameters.AddWithValue("@IdCliente", C.cliente.Id);
+			command.Parameters.AddWithValue("@Observacion", C.Observacion);
+			command.Parameters.AddWithValue("@IdCliente", C.Cliente.Id);
 			//command.Parameters.AddWithValue("@IdCadete", C.);
-			command.Parameters.AddWithValue("@Estado", C.estado);
-			command.Parameters.AddWithValue("@Tipo", C.tipoPedido);
+			command.Parameters.AddWithValue("@Estado", C.Estado1);
+			command.Parameters.AddWithValue("@Tipo", C.TipoPedido1);
 			command.Parameters.AddWithValue("@Cupon", C.TieneCupon);
 			command.ExecuteNonQuery();
 
@@ -169,11 +169,11 @@ namespace CadeteriaMVC.Models
 			while (reader.Read())
 			{
 				C.Id = Convert.ToInt32(reader["idPedido"]);
-				C.cliente.Id = Convert.ToInt32(reader["idCliente"]);
+				C.Cliente.Id = Convert.ToInt32(reader["idCliente"]);
 				//C.IdCadete = Convert.ToInt32(reader["idCadete"]);
-				C.observacion = reader["observacion"].ToString();
-				C.estado = (CadeteriaMVC.Entidades.Pedido.Estado)Convert.ToInt32(reader["estado"]);
-				C.tipoPedido = (CadeteriaMVC.Entidades.Pedido.TipoPedido)Convert.ToInt32(reader["tipo"]);
+				C.Observacion = reader["observacion"].ToString();
+				C.Estado1 = (CadeteriaMVC.Entidades.Pedido.Estado)Convert.ToInt32(reader["estado"]);
+				C.TipoPedido1 = (CadeteriaMVC.Entidades.Pedido.TipoPedido)Convert.ToInt32(reader["tipo"]);
 				C.TieneCupon = Convert.ToBoolean(reader["cupon"]);
 				//C.Aumento = Convert.ToDouble(reader["aumento"]);
 			}

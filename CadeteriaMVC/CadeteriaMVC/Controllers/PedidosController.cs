@@ -51,12 +51,12 @@ namespace CadeteriaMVC.Controllers
 
             return Content(mensaje);
         }
-
         public IActionResult UpdatePedido(int id)
         {
             return View(new Pedido { Id = id });
         }
 
+        [HttpPost]
         public IActionResult ModificarPedido(Pedido P)
         {
             RepositorioPedido R = new RepositorioPedido();

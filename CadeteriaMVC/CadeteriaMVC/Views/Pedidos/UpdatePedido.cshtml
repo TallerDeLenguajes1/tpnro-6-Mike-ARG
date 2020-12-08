@@ -8,14 +8,14 @@
 
 <form asp-action="ModificarPedido" method="post">
     <div class="container">
-        <label asp-for="observacion">Pedido</label>
-        <input type="text" asp-for="observacion" />
-        <span asp-validation-for="observacion"></span>
+        <label asp-for="Observacion">Pedido</label>
+        <input type="text" asp-for="Observacion" />
+        <span asp-validation-for="Observacion"></span>
     </div>
 
     <div class="container">
-        <label asp-for="tipoPedido">Tipo de pedido</label>
-        <select asp-for="tipoPedido">
+        <label asp-for="TipoPedido1">Tipo de pedido</label>
+        <select asp-for="TipoPedido1">
             <option value="@CadeteriaMVC.Entidades.Pedido.TipoPedido.Delicado">@CadeteriaMVC.Entidades.Pedido.TipoPedido.Delicado</option>
             <option value="@CadeteriaMVC.Entidades.Pedido.TipoPedido.Ecologico">@CadeteriaMVC.Entidades.Pedido.TipoPedido.Ecologico</option>
             <option value="@CadeteriaMVC.Entidades.Pedido.TipoPedido.Express">@CadeteriaMVC.Entidades.Pedido.TipoPedido.Express</option>

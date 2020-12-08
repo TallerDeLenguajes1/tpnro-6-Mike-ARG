@@ -67,38 +67,43 @@ namespace CadeteriaMVC.Entidades
     {
         //public int contador;
         private int id;
-        public string observacion;
-        public Cliente cliente;
-        public Estado estado;
-        public TipoPedido tipoPedido;
+        private string observacion;
+        private Cliente cliente;
+        private Estado estado;
+        private TipoPedido tipoPedido;
         private bool tieneCupon;
-        public double costoPedido;
+        private double costoPedido;
 
         public int Id { get => id; set => id = value; }
         public bool TieneCupon { get => tieneCupon; set => tieneCupon = value; }
+        public string Observacion { get => observacion; set => observacion = value; }
+        public Cliente Cliente { get => cliente; set => cliente = value; }
+        public Estado Estado1 { get => estado; set => estado = value; }
+        public TipoPedido TipoPedido1 { get => tipoPedido; set => tipoPedido = value; }
+        public double CostoPedido1 { get => costoPedido; set => costoPedido = value; }
 
         public Pedido(string obs, Cliente client, Estado est, TipoPedido tipoPedido, bool tieneCupon)
         {
             //this.Id = contador;
             //contador++;
-            this.observacion = obs;
-            this.cliente = client;
-            estado = est;
-            this.tipoPedido = tipoPedido;
+            this.Observacion = obs;
+            this.Cliente = client;
+            Estado1 = est;
+            this.TipoPedido1 = tipoPedido;
             this.TieneCupon = tieneCupon;
-            this.costoPedido = CostoPedido();
+            this.CostoPedido1 = CostoPedido();
         }
 
         public Pedido()
         {
             //this.Id = contador;
             //contador++;
-            this.observacion = "";
-            this.cliente = new Cliente();
-            estado = Estado.NoDisponible;
-            this.tipoPedido = TipoPedido.Express;
+            this.Observacion = "";
+            this.Cliente = new Cliente();
+            Estado1 = Estado.NoDisponible;
+            this.TipoPedido1 = TipoPedido.Express;
             this.TieneCupon = false;
-            this.costoPedido = CostoPedido();
+            this.CostoPedido1 = CostoPedido();
         }
 
         public enum Estado
@@ -119,16 +124,16 @@ namespace CadeteriaMVC.Entidades
             switch (num)
             {
                 case 0:
-                    this.estado = Estado.Entregado;
+                    this.Estado1 = Estado.Entregado;
                     break;
                 case 1:
-                    this.estado = Estado.Entregando;
+                    this.Estado1 = Estado.Entregando;
                     break;
                 case 2:
-                    this.estado = Estado.Preparando;
+                    this.Estado1 = Estado.Preparando;
                     break;
                 case 3:
-                    this.estado = Estado.NoDisponible;
+                    this.Estado1 = Estado.NoDisponible;
                     break;
                 default:
                     break;
@@ -138,7 +143,7 @@ namespace CadeteriaMVC.Entidades
         {
             double costoBase = 150;
 
-            switch (this.tipoPedido)
+            switch (this.TipoPedido1)
             {
                 case TipoPedido.Express:
                     costoBase += costoBase * 0.25;
@@ -159,12 +164,12 @@ namespace CadeteriaMVC.Entidades
         public void MostrarPedido()
         {
             Console.WriteLine("ID del pedido: " + this.Id);
-            Console.WriteLine("Observación: " + this.observacion);
-            Console.WriteLine("Nombre del cliente: " + this.cliente.Nombre);
-            Console.WriteLine("Tipo de pedido: " + this.tipoPedido.ToString());
+            Console.WriteLine("Observación: " + this.Observacion);
+            Console.WriteLine("Nombre del cliente: " + this.Cliente.Nombre);
+            Console.WriteLine("Tipo de pedido: " + this.TipoPedido1.ToString());
             Console.WriteLine("¿Cupón?: " + this.TieneCupon.ToString());
             Console.WriteLine("Costo del pedido: " + this.CostoPedido());
-            Console.WriteLine("Estado: " + this.estado.ToString());
+            Console.WriteLine("Estado: " + this.Estado1.ToString());
             Console.WriteLine("");
         }
     }
@@ -188,13 +193,13 @@ namespace CadeteriaMVC.Entidades
 
         public void AsignarPedido(Pedido ped)
         {
-            switch (ped.tipoPedido)
+            switch (ped.TipoPedido1)
             {
                 case Pedido.TipoPedido.Express:
                     if (this.TipoVehiculo == Vehiculo.Moto)
                     {
                         //TipoVehiculo = Vehiculo.;
-                        ped.costoPedido += ped.costoPedido * 0.20;
+                        ped.CostoPedido1 += ped.CostoPedido1 * 0.20;
                         this.listaPedidos.Add(ped);
                     }
                     break;
@@ -202,7 +207,7 @@ namespace CadeteriaMVC.Entidades
                     if (this.TipoVehiculo == Vehiculo.Auto)
                     {
                         //vehiculo = "Auto";
-                        ped.costoPedido += ped.costoPedido * 0.25;
+                        ped.CostoPedido1 += ped.CostoPedido1 * 0.25;
                         this.listaPedidos.Add(ped);
                     }
                     break;
@@ -210,7 +215,7 @@ namespace CadeteriaMVC.Entidades
                     if (this.TipoVehiculo == Vehiculo.Bicicleta)
                     {
                         //vehiculo = "Bicicleta";
-                        ped.costoPedido += ped.costoPedido * 0.05;
+                        ped.CostoPedido1 += ped.CostoPedido1 * 0.05;
                         this.listaPedidos.Add(ped);
                     }
                     break;
@@ -231,7 +236,7 @@ namespace CadeteriaMVC.Entidades
 
             foreach (Pedido pedido in listaPedidos)
             {
-                if (pedido.estado == Pedido.Estado.Entregado)
+                if (pedido.Estado1 == Pedido.Estado.Entregado)
                 {
                     pedidosEntregados++;
                 }
