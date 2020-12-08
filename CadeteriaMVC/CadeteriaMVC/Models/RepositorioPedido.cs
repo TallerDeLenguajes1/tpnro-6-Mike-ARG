@@ -20,7 +20,7 @@ namespace CadeteriaMVC.Models
 			conection.Open();
 
 			var command = conection.CreateCommand();
-			string instruccion = "select * from pedidos inner join estados using(idEstado) inner join tipopedidos using(idTipo)";
+			string instruccion = "select * from pedidos";
 			command.CommandText = instruccion;
 
 			var reader = command.ExecuteReader();
@@ -32,9 +32,9 @@ namespace CadeteriaMVC.Models
 				C.cliente.Id = Convert.ToInt32(reader["idCliente"]);
 				//C = Convert.ToInt32(reader["idCadete"]);
 				C.observacion = reader["observacion"].ToString();
-				C.estado = (CadeteriaMVC.Entidades.Pedido.Estado)reader["estado"];
-				C.tipoPedido = (CadeteriaMVC.Entidades.Pedido.TipoPedido)reader["tipo"];
-				C.tieneCupon = Convert.ToBoolean(reader["cupon"]);
+				C.estado = (CadeteriaMVC.Entidades.Pedido.Estado)Convert.ToInt32(reader["estado"]);
+				C.tipoPedido = (CadeteriaMVC.Entidades.Pedido.TipoPedido)Convert.ToInt32(reader["tipo"]);
+				C.TieneCupon = Convert.ToBoolean(reader["cupon"]);
 				//C. = Convert.ToDouble(reader["aumento"]);
 				ListaPedidos.Add(C);
 			}
@@ -50,7 +50,7 @@ namespace CadeteriaMVC.Models
 			conection.Open();
 
 			//consigo el id del tipo que tiene el pedido
-			var command = conection.CreateCommand();
+			/*var command = conection.CreateCommand();
 			string instruccion = "select idTipo from tipopedidos where tipo LIKE @Tipo";
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@Tipo", C.tipoPedido);
@@ -73,18 +73,17 @@ namespace CadeteriaMVC.Models
 			while (reader.Read())
 			{
 				idEstado = Convert.ToInt32(reader["idEstado"]);
-			}
+			}*/
 
-			//inserto todo en la tabla
-			command = conection.CreateCommand();
-			instruccion = "insert into pedidos(observacion, idCliente, idCadete, idEstado, idTipo, cupon) values (@Observacion, @IdCliente, @IdCadete, @Estado, @Tipo, @Cupon);";
+			var command = conection.CreateCommand();
+			string instruccion = "insert into pedidos(observacion, idCliente, estado, tipo, cupon) values (@Observacion, @IdCliente, @Estado, @Tipo, @Cupon);";
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@Observacion", C.observacion);
 			command.Parameters.AddWithValue("@IdCliente", C.cliente.Id);
 			//command.Parameters.AddWithValue("@IdCadete", C.IdCadete);
-			command.Parameters.AddWithValue("@Estado", idEstado);
-			command.Parameters.AddWithValue("@Tipo", idTipo);
-			command.Parameters.AddWithValue("@Cupon", C.tieneCupon);
+			command.Parameters.AddWithValue("@Estado", C.estado);
+			command.Parameters.AddWithValue("@Tipo", C.tipoPedido);
+			command.Parameters.AddWithValue("@Cupon", C.TieneCupon);
 			command.ExecuteNonQuery();
 
 			conection.Close();
@@ -132,7 +131,7 @@ namespace CadeteriaMVC.Models
 			//command.Parameters.AddWithValue("@IdCadete", C.);
 			command.Parameters.AddWithValue("@Estado", idEstado);
 			command.Parameters.AddWithValue("@Tipo", idTipo);
-			command.Parameters.AddWithValue("@Cupon", C.tieneCupon);
+			command.Parameters.AddWithValue("@Cupon", C.TieneCupon);
 			command.ExecuteNonQuery();
 
 			conection.Close();
@@ -162,7 +161,7 @@ namespace CadeteriaMVC.Models
 			conection.Open();
 
 			var command = conection.CreateCommand();
-			string instruccion = "select * from pedidos inner join estados using(idEstado) inner join tipospedido using(idTipo) where idPedido = @Id";
+			string instruccion = "select * from pedidos where idPedido = @Id";
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@Id", id);
 
@@ -173,9 +172,9 @@ namespace CadeteriaMVC.Models
 				C.cliente.Id = Convert.ToInt32(reader["idCliente"]);
 				//C.IdCadete = Convert.ToInt32(reader["idCadete"]);
 				C.observacion = reader["observacion"].ToString();
-				C.estado = (CadeteriaMVC.Entidades.Pedido.Estado)reader["estado"];
-				C.tipoPedido = (CadeteriaMVC.Entidades.Pedido.TipoPedido)reader["tipo"];
-				C.tieneCupon = Convert.ToBoolean(reader["cupon"]);
+				C.estado = (CadeteriaMVC.Entidades.Pedido.Estado)Convert.ToInt32(reader["estado"]);
+				C.tipoPedido = (CadeteriaMVC.Entidades.Pedido.TipoPedido)Convert.ToInt32(reader["tipo"]);
+				C.TieneCupon = Convert.ToBoolean(reader["cupon"]);
 				//C.Aumento = Convert.ToDouble(reader["aumento"]);
 			}
 

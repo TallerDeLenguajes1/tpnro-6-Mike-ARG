@@ -27,4 +27,13 @@
             <option value="@CadeteriaMVC.Entidades.Pedido.TipoPedido.Express">@CadeteriaMVC.Entidades.Pedido.TipoPedido.Express</option>
         </select>
     </div>
+
+    <div class="container">
+        <label asp-for="TieneCupon">Cupón</label>
+        <select asp-for="TieneCupon">
+            <option value="@true">Sí</option>
+            <option value="@false">No</option>
+        </select>
+    </div>
+    <input type="submit"/>
 </form>

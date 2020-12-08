@@ -71,10 +71,11 @@ namespace CadeteriaMVC.Entidades
         public Cliente cliente;
         public Estado estado;
         public TipoPedido tipoPedido;
-        public bool tieneCupon;
+        private bool tieneCupon;
         public double costoPedido;
 
         public int Id { get => id; set => id = value; }
+        public bool TieneCupon { get => tieneCupon; set => tieneCupon = value; }
 
         public Pedido(string obs, Cliente client, Estado est, TipoPedido tipoPedido, bool tieneCupon)
         {
@@ -84,7 +85,7 @@ namespace CadeteriaMVC.Entidades
             this.cliente = client;
             estado = est;
             this.tipoPedido = tipoPedido;
-            this.tieneCupon = tieneCupon;
+            this.TieneCupon = tieneCupon;
             this.costoPedido = CostoPedido();
         }
 
@@ -96,7 +97,7 @@ namespace CadeteriaMVC.Entidades
             this.cliente = new Cliente();
             estado = Estado.NoDisponible;
             this.tipoPedido = TipoPedido.Express;
-            this.tieneCupon = false;
+            this.TieneCupon = false;
             this.costoPedido = CostoPedido();
         }
 
@@ -149,7 +150,7 @@ namespace CadeteriaMVC.Entidades
                     break;
             }
 
-            if (this.tieneCupon == true)
+            if (this.TieneCupon == true)
             {
                 costoBase -= costoBase * 0.10;
             }
@@ -161,7 +162,7 @@ namespace CadeteriaMVC.Entidades
             Console.WriteLine("Observación: " + this.observacion);
             Console.WriteLine("Nombre del cliente: " + this.cliente.Nombre);
             Console.WriteLine("Tipo de pedido: " + this.tipoPedido.ToString());
-            Console.WriteLine("¿Cupón?: " + this.tieneCupon.ToString());
+            Console.WriteLine("¿Cupón?: " + this.TieneCupon.ToString());
             Console.WriteLine("Costo del pedido: " + this.CostoPedido());
             Console.WriteLine("Estado: " + this.estado.ToString());
             Console.WriteLine("");

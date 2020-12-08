@@ -1,5 +1,34 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model List<CadeteriaMVC.Entidades.Pedido>
+@{ ViewData["Title"] = "Lista de pedidos"; }
+
+<div class="text-center">
+    <h3>Listado de Pedidos</h3>
+</div>
+
+<table class="table">
+    <tr>
+        <th>Número de pedido</th>
+        <th>Pedido</th>
+        <th>Cliente</th>
+        <th>Tipo de pedido</th>
+        <th>Estado</th>
+        <th>Cupón</th>
+        <th>Valor del pedido</th>
+        <th>Modificar pedido</th>
+        <th>Cancelar pedido</th>
+    </tr>
+
+    @foreach (CadeteriaMVC.Entidades.Pedido P in Model)
+    {
+        <tr>
+            <td>@P.Id</td>
+            <td>@P.observacion</td>
+            <td>@P.cliente.Nombre</td>
+            <td>@P.estado</td>
+            <td>@P.TieneCupon</td>
+            <td>@P.CostoPedido()</td>
+            <td>@Html.ActionLink("Modificar pedido", "UpdatePedido", new { id = P.Id })</td>
+            <td>@Html.ActionLink("Cancelar pedido", "BajaPedido", new { id = P.Id })</td>
+        </tr>
+    }
+</table>

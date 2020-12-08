@@ -145,7 +145,7 @@ namespace CadeteriaMVC.Models
 				P.observacion = reader["observacion"].ToString();
 				//P.estado = reader["estado"].ToString();
 				//P.tipoPedido = reader["tipo"];
-				P.tieneCupon = Convert.ToBoolean(reader["cupon"]);
+				P.TieneCupon = Convert.ToBoolean(reader["cupon"]);
 				//P.Aumento = Convert.ToDouble(reader["aumento"]);
 				ListaPedidos.Add(P);
 			}
