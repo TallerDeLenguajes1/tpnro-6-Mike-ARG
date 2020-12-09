@@ -17,16 +17,12 @@ namespace CadeteriaMVC.Controllers
 		private readonly IMapper _mapper;
 		private List<CadeteriaMVC.Entidades.Cadete> ListaCadetes;
 
-		public CadetesController(ILogger<ClientesController> logger)
+		public CadetesController(ILogger<ClientesController> logger, IMapper mapper)
 		{
 			_logger = logger;
+			_mapper = mapper;
 			ListaCadetes = new List<CadeteriaMVC.Entidades.Cadete>();
 		}
-
-		public CadetesController (IMapper mapper)
-        {
-			_mapper = mapper;
-        }
 
 		public IActionResult Index()
 		{
