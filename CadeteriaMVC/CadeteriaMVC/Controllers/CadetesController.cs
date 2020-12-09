@@ -6,24 +6,35 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CadeteriaMVC.Models;
 using System.Data.SQLite;
+using AutoMapper;
+using CadeteriaMVC.ViewModel;
 
 namespace CadeteriaMVC.Controllers
 {
 	public class CadetesController : Controller
 	{
 		private readonly ILogger<ClientesController> _logger;
+		private readonly IMapper _mapper;
 		private List<CadeteriaMVC.Entidades.Cadete> ListaCadetes;
+
 		public CadetesController(ILogger<ClientesController> logger)
 		{
 			_logger = logger;
 			ListaCadetes = new List<CadeteriaMVC.Entidades.Cadete>();
 		}
 
+		public CadetesController (IMapper mapper)
+        {
+			_mapper = mapper;
+        }
+
 		public IActionResult Index()
 		{
 			RepositorioCadete R = new RepositorioCadete();
 			ListaCadetes = R.GetAll();
-			return View(ListaCadetes);
+			List<CadeteViewModel> ListCadeteVM = _mapper.Map<List<CadeteViewModel>>(ListaCadetes);
+
+			return View(ListCadeteVM);
 		}
 
 		public IActionResult AltaCadete()

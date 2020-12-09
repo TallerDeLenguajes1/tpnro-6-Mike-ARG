@@ -1,4 +1,4 @@
-﻿@model List<CadeteriaMVC.Entidades.Cadete>
+﻿@model List<CadeteriaMVC.ViewModel.CadeteViewModel>
 @{ ViewData["Title"] = "Cadetes"; }
 
 <div class="text-center">
@@ -17,17 +17,17 @@
         <th>Eliminar</th>
     </tr>
 
-    @foreach (CadeteriaMVC.Entidades.Cadete C in Model)
+    @foreach (CadeteriaMVC.ViewModel.CadeteViewModel C in Model)
     {
         <tr>
             <td>@C.Nombre</td>
             <td>@C.Direccion</td>
             <td>@C.Telefono</td>
             <td>@C.TipoVehiculo</td>
-            <td>@C.CalcularJornal()</td>
-            <td>@Html.ActionLink("Ver pedidos", "MostrarPedidos", new { id = C.Id })</td>
-            <td>@Html.ActionLink("Modificar", "UpdateCadete", new { id = C.Id })</td>
-            <td>@Html.ActionLink("Eliminar", "BajaCadete", new { id = C.Id })</td>
+            <td>@C.Jornal</td>
+            <td>@Html.ActionLink("Ver pedidos", "MostrarPedidos", new { id = C.ID })</td>
+            <td>@Html.ActionLink("Modificar", "UpdateCadete", new { id = C.ID })</td>
+            <td>@Html.ActionLink("Eliminar", "BajaCadete", new { id = C.ID })</td>
         </tr>
     }
 </table>
