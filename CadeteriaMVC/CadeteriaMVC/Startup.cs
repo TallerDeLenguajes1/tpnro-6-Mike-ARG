@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoMapper;
+using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Http;
 
 namespace CadeteriaMVC
 {
@@ -26,6 +28,12 @@ namespace CadeteriaMVC
         {
             services.AddControllersWithViews();
             services.AddAutoMapper(typeof(CadeteriaMVC.PerfilDeMapeo));
+            services.AddDistributedMemoryCache();
+            services.AddSession(Options =>
+            {
+                Options.Cookie.Name = "ElSistema.Session";
+                Options.IdleTimeout = TimeSpan.FromSeconds(3600);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
