@@ -1,4 +1,4 @@
-﻿@model List<CadeteriaMVC.Entidades.Cliente>
+﻿@model List<CadeteriaMVC.ViewModel.ClienteViewModel>
 
 <table class="table">
     <tr>
@@ -9,7 +9,7 @@
         <th>Eliminar</th>
     </tr>
 
-    @foreach (CadeteriaMVC.Entidades.Cliente C in Model)
+    @foreach (CadeteriaMVC.ViewModel.ClienteViewModel C in Model)
     {
         <tr>
             <td>@C.Nombre</td>
@@ -17,11 +17,11 @@
             <td>@C.Telefono</td>
             <td>
                 <form asp-action="UpdateCliente" method="post" class="form-group">
-                    <input type="hidden" name="id" value="@C.Id" />
+                    <input type="hidden" name="id" value="@C.ID" />
                     <button type="submit" class="btn btn-outline-info waves-effect">Modificar</button>
                 </form>
             </td>
-            <td>@Html.ActionLink("Eliminar", "BajaCliente", new { id = C.Id })</td>
+            <td>@Html.ActionLink("Eliminar", "BajaCliente", new { id = C.ID })</td>
         </tr>
     }
 </table>

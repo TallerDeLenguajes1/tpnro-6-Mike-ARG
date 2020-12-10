@@ -126,5 +126,3 @@ C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Pe
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Pedidos\UpdatePedido.cshtml.g.cs
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\CadeteriaMVC.csproj.CoreCompileInputs.cache
-C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\CadeteriaMVC.MvcApplicationPartsAssemblyInfo.cache
