@@ -7,17 +7,21 @@ using Microsoft.Extensions.Logging;
 using CadeteriaMVC.Entidades;
 using CadeteriaMVC.Models;
 using System.Data.SQLite;
+using AutoMapper;
+using CadeteriaMVC.ViewModel;
 
 namespace CadeteriaMVC.Controllers
 {
     public class PedidosController : Controller
     {
         private readonly ILogger<PedidosController> _logger;
+        private readonly IMapper _mapper;
         private List<Pedido> ListaPedidos;
 
-        public PedidosController (ILogger<PedidosController> logger)
+        public PedidosController (ILogger<PedidosController> logger, IMapper mapper)
         {
             _logger = logger;
+            _mapper = mapper;
             ListaPedidos = new List<Pedido>();
         }
         
@@ -25,8 +29,9 @@ namespace CadeteriaMVC.Controllers
         {
             RepositorioPedido R = new RepositorioPedido();
             ListaPedidos = R.GetAll();
+            List<PedidoViewModel> ListaPedidoVM = _mapper.Map<List<PedidoViewModel>>(ListaPedidos);
 
-            return View(ListaPedidos);
+            return View(ListaPedidoVM);
         }
 
         public IActionResult AltaPedido()
@@ -35,14 +40,15 @@ namespace CadeteriaMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult CrearPedido(Pedido P)
+        public IActionResult CrearPedido(PedidoViewModel P)
         {
             string mensaje;
 
             if (ModelState.IsValid)
             {
                 RepositorioPedido R = new RepositorioPedido();
-                R.Alta(P);
+                Pedido PedidoDTO = _mapper.Map<Pedido>(P);
+                R.Alta(PedidoDTO);
                 mensaje = "Se creó con éxito el pedido.";
             } else
             {
@@ -57,10 +63,11 @@ namespace CadeteriaMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult ModificarPedido(Pedido P)
+        public IActionResult ModificarPedido(PedidoViewModel P)
         {
             RepositorioPedido R = new RepositorioPedido();
-            R.Update(P);
+            Pedido PedidoDTO = _mapper.Map<Pedido>(P);
+            R.Update(PedidoDTO);
 
             return Redirect("/Pedidos/Index");
         }
@@ -81,13 +88,14 @@ namespace CadeteriaMVC.Controllers
 
         [HttpPost]
 
-        public IActionResult EliminarPedido(Pedido P)
+        public IActionResult EliminarPedido(PedidoViewModel P)
         {
             string mensaje;
             try
             {
                 RepositorioPedido R = new RepositorioPedido();
-                R.Baja(P.Id);
+                Pedido PedidoDTO = _mapper.Map<Pedido>(P);
+                R.Baja(PedidoDTO.Id);
                 mensaje = "Se eliminó con éxito el pedido.";
             }
             catch (Exception)

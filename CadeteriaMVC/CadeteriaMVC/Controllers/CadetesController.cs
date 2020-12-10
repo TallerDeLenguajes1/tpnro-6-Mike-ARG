@@ -8,6 +8,7 @@ using CadeteriaMVC.Models;
 using System.Data.SQLite;
 using AutoMapper;
 using CadeteriaMVC.ViewModel;
+using CadeteriaMVC.Entidades;
 
 namespace CadeteriaMVC.Controllers
 {
@@ -39,23 +40,23 @@ namespace CadeteriaMVC.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult CrearCadete(CadeteriaMVC.Entidades.Cadete C)
+		public IActionResult CrearCadete(CadeteriaMVC.ViewModel.CadeteViewModel C)
 		{
-			string mensaje;
-			if (ModelState.IsValid)
+			try
 			{
-				RepositorioCadete R = new RepositorioCadete();
-				R.Alta(C);
-				mensaje = "Se creo con exito el cadete";
+				if (ModelState.IsValid)
+				{
+					Cadete CadeteDTO = _mapper.Map<Cadete>(C);
+					RepositorioCadete R = new RepositorioCadete();
+					R.Alta(CadeteDTO);
+				}
+				return Redirect("/Cadetes/Index");
 			}
-			else
+			catch (Exception ex)
 			{
-				mensaje = "Hubo un error, intente de nuevo";
+				return Content(ex.Message);
 			}
-
-			return Content(mensaje);
 		}
-
 		public IActionResult UpdateCadete(int id)
 		{
 			RepositorioCadete R = new RepositorioCadete();
@@ -71,21 +72,15 @@ namespace CadeteriaMVC.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult ModificarCadete(CadeteriaMVC.Entidades.Cadete C)
+		public IActionResult ModificarCadete(CadeteriaMVC.ViewModel.CadeteViewModel C)
 		{
-			string mensaje;
 			if (ModelState.IsValid)
 			{
 				RepositorioCadete R = new RepositorioCadete();
-				R.Update(C);
-				mensaje = "Se modificó con exito el cadete";
+				Cadete CadeteDTO = _mapper.Map<Cadete>(C);
+				R.Update(CadeteDTO);
 			}
-			else
-			{
-				mensaje = "Hubo un error, intente de nuevo";
-			}
-
-			return Content(mensaje);
+			return Redirect("/Cadetes/Index");
 		}
 
 		public IActionResult BajaCadete(int id)
@@ -103,21 +98,19 @@ namespace CadeteriaMVC.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult EliminarCadete(CadeteriaMVC.Entidades.Cadete C)
+		public IActionResult EliminarCadete(CadeteriaMVC.ViewModel.CadeteViewModel C)
 		{
-			string mensaje;
 			try
 			{
 				RepositorioCadete R = new RepositorioCadete();
-				R.Baja(C.Id);
-				mensaje = "Se elimino con exito el cadete";
+				Cadete CadeteDTO = _mapper.Map<Cadete>(C);
+				R.Baja(CadeteDTO.Id);
+				return Redirect("/Cadetes/Index");
 			}
 			catch (Exception)
 			{
-				mensaje = "Hubo un error, intente de nuevo";
+				return Redirect("/Cadetes/Index");
 			}
-
-			return Content(mensaje);
 		}
 
 		public IActionResult MostrarPedidos(int id)

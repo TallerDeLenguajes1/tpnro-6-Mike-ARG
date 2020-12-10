@@ -13,6 +13,8 @@ namespace CadeteriaMVC
         public PerfilDeMapeo()
         {
             CreateMap<Cadete, CadeteViewModel>().ReverseMap();
+            CreateMap<Cliente, ClienteViewModel>().ReverseMap();
+            CreateMap<Pedido, PedidoViewModel>().ReverseMap();
         }
     }
 }

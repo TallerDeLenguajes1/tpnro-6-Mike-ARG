@@ -6,17 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CadeteriaMVC.Models;
 using System.Data.SQLite;
+using AutoMapper;
+using CadeteriaMVC.Entidades;
+using CadeteriaMVC.ViewModel;
 
 namespace CadeteriaMVC.Controllers
 {
     public class ClientesController : Controller
     {
         private readonly ILogger<ClientesController> _logger;
+        private readonly IMapper _mapper;
         private List<CadeteriaMVC.Entidades.Cliente> ListaClientes;
 
-        public ClientesController(ILogger<ClientesController> logger)
+        public ClientesController(ILogger<ClientesController> logger, IMapper mapper)
         {
             _logger = logger;
+            _mapper = mapper;
             ListaClientes = new List<CadeteriaMVC.Entidades.Cliente>();
         }
 
@@ -24,22 +29,24 @@ namespace CadeteriaMVC.Controllers
         {
             RepositorioCliente R = new RepositorioCliente();
             ListaClientes = R.GetAll();
-            return View(ListaClientes);
+            List<ClienteViewModel> ListaClienteVM = _mapper.Map<List<ClienteViewModel>>(ListaClientes);
+            return View(ListaClienteVM);
         }
 
         public IActionResult AltaCliente()
         {
-            return View(new CadeteriaMVC.Entidades.Cliente("", "", 1234));
+            return View(new CadeteriaMVC.Entidades.Cliente());
         }
 
         [HttpPost]
-        public IActionResult CrearCliente(CadeteriaMVC.Entidades.Cliente C)
+        public IActionResult CrearCliente(CadeteriaMVC.ViewModel.ClienteViewModel C)
         {
             string mensaje;
             if (ModelState.IsValid)
             {
                 RepositorioCliente R = new RepositorioCliente();
-                R.Alta(C);
+                Cliente ClienteDTO = _mapper.Map<Cliente>(C);
+                R.Alta(ClienteDTO);
                 mensaje = "Se creo con exito el cliente";
             }
             else
@@ -54,10 +61,11 @@ namespace CadeteriaMVC.Controllers
         {
             return View(new CadeteriaMVC.Entidades.Cliente { Id = id });
         }
-        public IActionResult ModificarCliente(CadeteriaMVC.Entidades.Cliente C)
+        public IActionResult ModificarCliente(CadeteriaMVC.ViewModel.ClienteViewModel C)
         {
             RepositorioCliente R = new RepositorioCliente();
-            R.Update(C);
+            Cliente ClienteDTO = _mapper.Map<Cliente>(C);
+            R.Update(ClienteDTO);
 
             return Redirect("/Clientes/Index");
         }
@@ -77,20 +85,20 @@ namespace CadeteriaMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult EliminarCliente(CadeteriaMVC.Entidades.Cliente C)
+        public IActionResult EliminarCliente(CadeteriaMVC.ViewModel.ClienteViewModel C)
         {
             string mensaje;
             try
             {
                 RepositorioCliente R = new RepositorioCliente();
-                R.Baja(C.Id);
+                Cliente ClienteDTO = _mapper.Map<Cliente>(C);
+                R.Baja(ClienteDTO.Id);
                 mensaje = "Se elimino con exito el cliente";
             }
             catch (Exception)
             {
                 mensaje = "Hubo un error, intente de nuevo";
             }
-
             return Content(mensaje);
         }
     }
