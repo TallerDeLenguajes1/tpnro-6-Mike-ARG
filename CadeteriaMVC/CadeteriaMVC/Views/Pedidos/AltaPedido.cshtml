@@ -8,13 +8,7 @@
 
 <form asp-action="CrearPedido" method="post">
     <div class="container">
-        <label asp-for="Cliente.Nombre">Nombre del cliente</label>
-        <input type="text" asp-for="Cliente.Nombre" />
-        <span asp-validation-for="Cliente.Nombre"></span>
-    </div>
-
-    <div class="container">
-        <label asp-for="Observacion">Observación</label>
+        <label asp-for="Observacion">Pedido</label>
         <input type="text" asp-for="Observacion" />
         <span asp-validation-for="Observacion"></span>
     </div>

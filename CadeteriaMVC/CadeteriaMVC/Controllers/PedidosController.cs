@@ -48,6 +48,8 @@ namespace CadeteriaMVC.Controllers
             {
                 RepositorioPedido R = new RepositorioPedido();
                 Pedido PedidoDTO = _mapper.Map<Pedido>(P);
+                PedidoDTO.Cliente = new Cliente();
+                PedidoDTO.Cadete = new Cadete();
                 R.Alta(PedidoDTO);
                 mensaje = "Se creó con éxito el pedido.";
             } else
@@ -67,6 +69,8 @@ namespace CadeteriaMVC.Controllers
         {
             RepositorioPedido R = new RepositorioPedido();
             Pedido PedidoDTO = _mapper.Map<Pedido>(P);
+            PedidoDTO.Cliente = P.Cliente;
+            PedidoDTO.Cadete = P.Cadete;
             R.Update(PedidoDTO);
 
             return Redirect("/Pedidos/Index");

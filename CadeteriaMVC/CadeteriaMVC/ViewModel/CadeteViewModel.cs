@@ -13,7 +13,7 @@ namespace CadeteriaMVC.ViewModel
         public string Direccion { get; set; }
         public long Telefono { get; set; }
         public List<Pedido> ListaPedidos { get; set; }
-        public Cadete.Vehiculo TipoVehiculo { get; set; }
+        public Vehiculo TipoVehiculo { get; set; }
         public double Jornal { get; set; }
 
         /*public int CantidadEntregados()

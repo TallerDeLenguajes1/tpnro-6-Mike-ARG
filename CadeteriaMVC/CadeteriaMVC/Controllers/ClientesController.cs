@@ -35,7 +35,7 @@ namespace CadeteriaMVC.Controllers
 
         public IActionResult AltaCliente()
         {
-            return View(new CadeteriaMVC.Entidades.Cliente());
+            return View(new CadeteriaMVC.ViewModel.ClienteViewModel());
         }
 
         [HttpPost]

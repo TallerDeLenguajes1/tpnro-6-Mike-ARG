@@ -31,7 +31,7 @@ namespace CadeteriaMVC.Models
 				C.Nombre = reader["nombre"].ToString();
 				C.Direccion = reader["direccion"].ToString();
 				C.Telefono = (long)Convert.ToDouble(reader["telefono"]);
-				C.TipoVehiculo = (Cadete.Vehiculo)Convert.ToInt32(reader["vehiculo"]);
+				C.TipoVehiculo = (Vehiculo)Convert.ToInt32(reader["vehiculo"]);
 				ListaCadetes.Add(C);
 			}
 
@@ -39,7 +39,7 @@ namespace CadeteriaMVC.Models
 			return ListaCadetes;
 		}
 
-		public void Alta(CadeteriaMVC.Entidades.Cadete C)
+		public void Alta(Cadete C)
 		{
 			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
 			var conection = new SQLiteConnection(path);
@@ -113,7 +113,7 @@ namespace CadeteriaMVC.Models
 				C.Nombre = reader["nombre"].ToString();
 				C.Direccion = reader["direccion"].ToString();
 				C.Telefono = (long)Convert.ToDouble(reader["telefono"]);
-				C.TipoVehiculo = (Cadete.Vehiculo)Convert.ToInt32(reader["vehiculo"]);
+				C.TipoVehiculo = (Vehiculo)Convert.ToInt32(reader["vehiculo"]);
 				//C.RecargaV = Convert.ToDouble(reader["aumento"]);
 			}
 

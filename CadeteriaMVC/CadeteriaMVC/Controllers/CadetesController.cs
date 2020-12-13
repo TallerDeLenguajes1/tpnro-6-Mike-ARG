@@ -36,18 +36,18 @@ namespace CadeteriaMVC.Controllers
 
 		public IActionResult AltaCadete()
 		{
-			return View(new CadeteriaMVC.Entidades.Cadete());
+			return View(new CadeteViewModel());
 		}
 
 		[HttpPost]
-		public IActionResult CrearCadete(CadeteriaMVC.ViewModel.CadeteViewModel C)
+		public IActionResult CrearCadete(CadeteViewModel C)
 		{
 			try
 			{
 				if (ModelState.IsValid)
 				{
-					Cadete CadeteDTO = _mapper.Map<Cadete>(C);
 					RepositorioCadete R = new RepositorioCadete();
+					Cadete CadeteDTO = _mapper.Map<Cadete>(C);
 					R.Alta(CadeteDTO);
 				}
 				return Redirect("/Cadetes/Index");

@@ -30,12 +30,12 @@ namespace CadeteriaMVC.Models
 
 				C.Id = Convert.ToInt32(reader["idPedido"]);
 				C.Cliente.Id = Convert.ToInt32(reader["idCliente"]);
-				//C = Convert.ToInt32(reader["idCadete"]);
+				//C.Cadete.Id = Convert.ToInt32(reader["idCadete"]);
 				C.Observacion = reader["observacion"].ToString();
 				C.Estado1 = (CadeteriaMVC.Entidades.Pedido.Estado)Convert.ToInt32(reader["estado"]);
 				C.TipoPedido1 = (CadeteriaMVC.Entidades.Pedido.TipoPedido)Convert.ToInt32(reader["tipo"]);
 				C.TieneCupon = Convert.ToBoolean(reader["cupon"]);
-				//C. = Convert.ToDouble(reader["aumento"]);
+				//C.CostoPedido1 = Convert.ToDouble(reader["costoPedido"]);
 				ListaPedidos.Add(C);
 			}
 
@@ -49,38 +49,12 @@ namespace CadeteriaMVC.Models
 			var conection = new SQLiteConnection(path);
 			conection.Open();
 
-			//consigo el id del tipo que tiene el pedido
-			/*var command = conection.CreateCommand();
-			string instruccion = "select idTipo from tipopedidos where tipo LIKE @Tipo";
-			command.CommandText = instruccion;
-			command.Parameters.AddWithValue("@Tipo", C.tipoPedido);
-
-			int idTipo = 0;
-			var reader = command.ExecuteReader();
-			while (reader.Read())
-			{
-				idTipo = Convert.ToInt32(reader["idTipo"]);
-			}
-
-			//consigo el id del estado que tiene el pedido
-			command = conection.CreateCommand();
-			instruccion = "select idEstado from estados where estado LIKE @Estado";
-			command.CommandText = instruccion;
-			command.Parameters.AddWithValue("@Estado", C.estado);
-
-			int idEstado = 0;
-			reader = command.ExecuteReader();
-			while (reader.Read())
-			{
-				idEstado = Convert.ToInt32(reader["idEstado"]);
-			}*/
-
 			var command = conection.CreateCommand();
 			string instruccion = "insert into pedidos(observacion, idCliente, estado, tipo, cupon) values (@Observacion, @IdCliente, @Estado, @Tipo, @Cupon);";
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@Observacion", C.Observacion);
 			command.Parameters.AddWithValue("@IdCliente", C.Cliente.Id);
-			//command.Parameters.AddWithValue("@IdCadete", C.IdCadete);
+			//command.Parameters.AddWithValue("@IdCadete", C.Cadete.Id);
 			command.Parameters.AddWithValue("@Estado", C.Estado1);
 			command.Parameters.AddWithValue("@Tipo", C.TipoPedido1);
 			command.Parameters.AddWithValue("@Cupon", C.TieneCupon);
@@ -128,7 +102,7 @@ namespace CadeteriaMVC.Models
 			command.Parameters.AddWithValue("@Id", C.Id);
 			command.Parameters.AddWithValue("@Observacion", C.Observacion);
 			command.Parameters.AddWithValue("@IdCliente", C.Cliente.Id);
-			//command.Parameters.AddWithValue("@IdCadete", C.);
+			//command.Parameters.AddWithValue("@IdCadete", C.Cadete.Id);
 			command.Parameters.AddWithValue("@Estado", C.Estado1);
 			command.Parameters.AddWithValue("@Tipo", C.TipoPedido1);
 			command.Parameters.AddWithValue("@Cupon", C.TieneCupon);
@@ -181,44 +155,5 @@ namespace CadeteriaMVC.Models
 			conection.Close();
 			return C;
 		}
-
-		/*public CadeteriaMVC.Entidades.Pedido AsignarCadete(CadeteriaMVC.Entidades.Pedido P)
-		{
-			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\cadeteria.db");
-			var conection = new SQLiteConnection(path);
-			conection.Open();
-			//consigo el id del tipo que tiene el pedido
-			var command = conection.CreateCommand();
-			string instruccion = "select idTipo from tipospedido where tipo LIKE @Tipo";
-			command.CommandText = instruccion;
-			command.Parameters.AddWithValue("@Tipo", P.Tipo);
-			int idTipo = 0;
-			var reader = command.ExecuteReader();
-			while (reader.Read())
-			{
-				idTipo = Convert.ToInt32(reader["idTipo"]);
-			}
-			//agarro todos los cadetes que pueden llevar ese pedido
-			command = conection.CreateCommand();
-			instruccion = "select idCadete from cadetes where idVehiculo = @IdTipo";
-			command.CommandText = instruccion;
-			command.Parameters.AddWithValue("@IdTipo", idTipo);
-			List<int> CadetesDisponibles = new List<int>();
-			reader = command.ExecuteReader();
-			while (reader.Read())
-			{
-				CadetesDisponibles.Add(Convert.ToInt32(reader["idCadete"]));
-			}
-			//asigno el cadete de forma aleatoria
-			try
-			{
-				P.IdCadete = CadetesDisponibles[random.Next(CadetesDisponibles.Count)];
-			}
-			catch (Exception)
-			{
-				P.IdCadete = 0;
-			}
-			return P;
-		}*/
 	}
 }
