@@ -12,6 +12,20 @@ namespace CadeteriaMVC.Entidades
         Moto
     }
 
+    public enum Estado
+    {
+        Entregado = 0,
+        Entregando = 1, //Cuando se está llevando un pedido
+        Preparando = 2,
+        NoDisponible = 3,
+    }
+    public enum TipoPedido
+    {
+        Express,
+        Delicado,
+        Ecologico,
+    }
+
     public abstract class Persona
     {
         private string nombre;
@@ -76,8 +90,8 @@ namespace CadeteriaMVC.Entidades
         //public int contador;
         private int id;
         private string observacion;
-        private Cliente cliente;
-        private Cadete cadete;
+        private int cliente;
+        private int cadete;
         private Estado estado;
         private TipoPedido tipoPedido;
         private bool tieneCupon;
@@ -86,23 +100,23 @@ namespace CadeteriaMVC.Entidades
         public int Id { get => id; set => id = value; }
         public bool TieneCupon { get => tieneCupon; set => tieneCupon = value; }
         public string Observacion { get => observacion; set => observacion = value; }
-        public Cliente Cliente { get => cliente; set => cliente = value; }
-        public Estado Estado1 { get => estado; set => estado = value; }
-        public TipoPedido TipoPedido1 { get => tipoPedido; set => tipoPedido = value; }
-        public double CostoPedido1 { get => costoPedido; set => costoPedido = value; }
-        public Cadete Cadete { get => cadete; set => cadete = value; }
+        public int Cliente { get => cliente; set => cliente = value; }
+        public Estado Estado { get => estado; set => estado = value; }
+        public TipoPedido TipoPedido { get => tipoPedido; set => tipoPedido = value; }
+        public double CostoPedido { get => costoPedido; set => costoPedido = value; }
+        public int Cadete { get => cadete; set => cadete = value; }
 
-        public Pedido(string obs, Cliente client, Cadete cad, Estado est, TipoPedido tipoPedido, bool tieneCupon)
+        public Pedido(string obs, int client, int cad, Estado est, TipoPedido tipoPedido, bool tieneCupon)
         {
             //this.Id = contador;
             //contador++;
             this.Observacion = obs;
             this.Cliente = client;
             this.Cadete = cad;
-            Estado1 = est;
-            this.TipoPedido1 = tipoPedido;
+            Estado = est;
+            this.TipoPedido = tipoPedido;
             this.TieneCupon = tieneCupon;
-            this.CostoPedido1 = CostoPedido();
+            this.CostoPedido = 0;
         }
 
         public Pedido()
@@ -110,15 +124,13 @@ namespace CadeteriaMVC.Entidades
             //this.Id = contador;
             //contador++;
             this.Observacion = "";
-            this.Cliente = new Cliente();
-            this.Cadete = new Cadete();
-            Estado1 = Estado.NoDisponible;
-            this.TipoPedido1 = TipoPedido.Express;
+            Estado = Estado.NoDisponible;
+            this.TipoPedido = TipoPedido.Express;
             this.TieneCupon = false;
-            this.CostoPedido1 = CostoPedido();
+            this.CostoPedido = 0;
         }
 
-        public enum Estado
+        /*public enum Estado
         {
             Entregado = 0,
             Entregando = 1, //Cuando se está llevando un pedido
@@ -183,7 +195,7 @@ namespace CadeteriaMVC.Entidades
             Console.WriteLine("Costo del pedido: " + this.CostoPedido());
             Console.WriteLine("Estado: " + this.Estado1.ToString());
             Console.WriteLine("");
-        }
+        }*/
     }
 
 

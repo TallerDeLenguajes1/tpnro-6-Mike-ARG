@@ -41,20 +41,13 @@ namespace CadeteriaMVC.Controllers
         [HttpPost]
         public IActionResult CrearCliente(CadeteriaMVC.ViewModel.ClienteViewModel C)
         {
-            string mensaje;
             if (ModelState.IsValid)
             {
                 RepositorioCliente R = new RepositorioCliente();
                 Cliente ClienteDTO = _mapper.Map<Cliente>(C);
                 R.Alta(ClienteDTO);
-                mensaje = "Se creo con exito el cliente";
             }
-            else
-            {
-                mensaje = "Hubo un error, intente de nuevo";
-            }
-
-            return Content(mensaje);
+            return Redirect("/Clientes/Index");
         }
 
         public IActionResult UpdateCliente(int id)
@@ -100,19 +93,17 @@ namespace CadeteriaMVC.Controllers
         [HttpPost]
         public IActionResult EliminarCliente(CadeteriaMVC.ViewModel.ClienteViewModel C)
         {
-            string mensaje;
             try
             {
                 RepositorioCliente R = new RepositorioCliente();
                 Cliente ClienteDTO = _mapper.Map<Cliente>(C);
                 R.Baja(ClienteDTO.Id);
-                mensaje = "Se elimino con exito el cliente";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                mensaje = "Hubo un error, intente de nuevo";
+                Content(ex.ToString());
             }
-            return Content(mensaje);
+            return Redirect("/Clientes/Index");
         }
     }
 }

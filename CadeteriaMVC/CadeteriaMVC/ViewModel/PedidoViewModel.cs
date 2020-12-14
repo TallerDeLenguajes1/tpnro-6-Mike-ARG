@@ -10,10 +10,10 @@ namespace CadeteriaMVC.ViewModel
     {
         public int ID { get; set; }
         public string Observacion { get; set; }
-        public Cliente Cliente { get; set; }
-        public Cadete Cadete { get; set; }
-        public Pedido.Estado Estado { get; set; }
-        public Pedido.TipoPedido TipoPedido { get; set; }
+        public int Cliente { get; set; }
+        public int Cadete { get; set; }
+        public Estado Estado { get; set; }
+        public TipoPedido TipoPedido { get; set; }
         public bool TieneCupon { get; set; }
         public double CostoPedido { get; set; }
     }

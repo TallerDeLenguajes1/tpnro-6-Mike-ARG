@@ -42,22 +42,14 @@ namespace CadeteriaMVC.Controllers
         [HttpPost]
         public IActionResult CrearPedido(PedidoViewModel P)
         {
-            string mensaje;
 
             if (ModelState.IsValid)
             {
                 RepositorioPedido R = new RepositorioPedido();
                 Pedido PedidoDTO = _mapper.Map<Pedido>(P);
-                PedidoDTO.Cliente = new Cliente();
-                PedidoDTO.Cadete = new Cadete();
                 R.Alta(PedidoDTO);
-                mensaje = "Se creó con éxito el pedido.";
-            } else
-            {
-                mensaje = "Error. No fue posible crear el pedido.";
-            }
-
-            return Content(mensaje);
+            } 
+            return Redirect("Index");
         }
         public IActionResult UpdatePedido(int id)
         {
@@ -73,7 +65,7 @@ namespace CadeteriaMVC.Controllers
             PedidoDTO.Cadete = P.Cadete;
             R.Update(PedidoDTO);
 
-            return Redirect("/Pedidos/Index");
+            return Redirect("Index");
         }
 
         public IActionResult BajaPedido(int id)
@@ -94,20 +86,17 @@ namespace CadeteriaMVC.Controllers
 
         public IActionResult EliminarPedido(PedidoViewModel P)
         {
-            string mensaje;
             try
             {
                 RepositorioPedido R = new RepositorioPedido();
                 Pedido PedidoDTO = _mapper.Map<Pedido>(P);
                 R.Baja(PedidoDTO.Id);
-                mensaje = "Se eliminó con éxito el pedido.";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                mensaje = "No fue posible eliminar el pedido.";
+                Content(ex.Message);
             }
-
-            return Content(mensaje);
+            return Redirect("Index");
         }
 
 

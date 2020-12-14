@@ -140,7 +140,7 @@ namespace CadeteriaMVC.Models
 				CadeteriaMVC.Entidades.Pedido P = new CadeteriaMVC.Entidades.Pedido();
 
 				P.Id = Convert.ToInt32(reader["idPedido"]);
-				P.Cliente.Id = Convert.ToInt32(reader["idCliente"]);
+				P.Cliente = Convert.ToInt32(reader["idCliente"]);
 				//P. = Convert.ToInt32(reader["idCadete"]);
 				P.Observacion = reader["observacion"].ToString();
 				//P.estado = reader["estado"].ToString();
