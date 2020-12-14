@@ -121,5 +121,38 @@ namespace CadeteriaMVC.Models
             conection.Close();
             return C;
         }
+
+        public List<Pedido> PedidosCliente(int id)
+        {
+            List<Pedido> ListaPed = new List<Pedido>();
+            string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
+            var conection = new SQLiteConnection(path);
+            conection.Open();
+
+            var command = conection.CreateCommand();
+            string instruccion = "SELECT idPedido, idCliente, idCadete, observacion, cupon, estado, tipo, costoPedido FROM pedidos " +
+                                 "INNER JOIN (clientes) USING (idCliente) where idCliente = @id";
+            command.CommandText = instruccion;
+            command.Parameters.AddWithValue("@id", id);
+
+            var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Pedido P = new Pedido();
+                P.Id = Convert.ToInt32(reader["idPedido"]);
+                P.Cliente = Convert.ToInt32(reader["idCliente"]);
+                P.Cadete = Convert.ToInt32(reader["idCadete"]);
+                P.Observacion = reader["observacion"].ToString();
+                P.TieneCupon = Convert.ToBoolean(reader["cupon"]);
+                P.Estado = (Estado)reader["estado"];
+                P.TipoPedido = (TipoPedido)reader["tipo"];
+                P.CostoPedido = Convert.ToDouble(reader["costoPedido"]);
+
+                ListaPed.Add(P);
+            }
+
+            conection.Close();
+            return ListaPed;
+        }
     }
 }

@@ -116,7 +116,7 @@ namespace CadeteriaMVC.Controllers
 		public IActionResult MostrarPedidos(int id)
 		{
 			CadeteriaMVC.Entidades.Cadete C = new RepositorioCadete().Buscar(id);
-			List<CadeteriaMVC.Entidades.Pedido> ListaPedidos = new RepositorioCadete().GetPedidos(C);
+			List<CadeteriaMVC.Entidades.Pedido> ListaPedidos = new RepositorioCadete().PedidosCadete(C.Id);
 			ViewBag.Nombre = C.Nombre;
 
 			return View(ListaPedidos);

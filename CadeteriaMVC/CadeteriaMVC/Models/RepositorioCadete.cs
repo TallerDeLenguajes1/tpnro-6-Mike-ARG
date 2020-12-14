@@ -121,37 +121,37 @@ namespace CadeteriaMVC.Models
 			return C;
 		}
 
-		public List<CadeteriaMVC.Entidades.Pedido> GetPedidos(CadeteriaMVC.Entidades.Cadete C)
+		public List<Pedido> PedidosCadete(int id)
 		{
-			List<CadeteriaMVC.Entidades.Pedido> ListaPedidos = new List<CadeteriaMVC.Entidades.Pedido>();
-
+			List<Pedido> ListaPed = new List<Pedido>();
 			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
 			var conection = new SQLiteConnection(path);
 			conection.Open();
 
 			var command = conection.CreateCommand();
-			string instruccion = "select * from pedidos inner join estados using(idEstado) inner join tipopedidos using(idTipo) where idCadete = @Id";
+			string instruccion = "SELECT idPedido, idCliente, idCadete, observacion, cupon, estado, tipo, costoPedido FROM pedidos " +
+								 "INNER JOIN (cadetes) USING (idCadete) where idCadete = @id";
 			command.CommandText = instruccion;
-			command.Parameters.AddWithValue("@Id", C.Id);
+			command.Parameters.AddWithValue("@id", id);
 
 			var reader = command.ExecuteReader();
 			while (reader.Read())
 			{
-				CadeteriaMVC.Entidades.Pedido P = new CadeteriaMVC.Entidades.Pedido();
-
+				Pedido P = new Pedido();
 				P.Id = Convert.ToInt32(reader["idPedido"]);
 				P.Cliente = Convert.ToInt32(reader["idCliente"]);
-				//P. = Convert.ToInt32(reader["idCadete"]);
+				P.Cadete = Convert.ToInt32(reader["idCadete"]);
 				P.Observacion = reader["observacion"].ToString();
-				//P.estado = reader["estado"].ToString();
-				//P.tipoPedido = reader["tipo"];
 				P.TieneCupon = Convert.ToBoolean(reader["cupon"]);
-				//P.Aumento = Convert.ToDouble(reader["aumento"]);
-				ListaPedidos.Add(P);
+				P.Estado = (Estado)reader["estado"];
+				P.TipoPedido = (TipoPedido)reader["tipo"];
+				P.CostoPedido = Convert.ToDouble(reader["costoPedido"]);
+
+				ListaPed.Add(P);
 			}
 
 			conection.Close();
-			return ListaPedidos;
+			return ListaPed;
 		}
 	}
 }

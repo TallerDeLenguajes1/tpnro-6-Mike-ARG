@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.IO;
+using CadeteriaMVC.Entidades;
 
 namespace CadeteriaMVC.Models
 {
@@ -172,6 +173,35 @@ namespace CadeteriaMVC.Models
 
 			conection.Close();
 			return C;
+		}
+
+		public void AsignarPedido(int idPedido, int idCadete)
+        {
+			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
+			var conection = new SQLiteConnection(path);
+			conection.Open();
+
+			var command = conection.CreateCommand();
+			string instruccion = "UPDATE pedidos SET idCadete = @IdCadete WHERE idPedido = @IdPedido;";
+			command.CommandText = instruccion;
+			command.Parameters.AddWithValue("@IdPedido", idPedido);
+			command.Parameters.AddWithValue("@IdCadete", idCadete);
+			command.ExecuteNonQuery();
+			conection.Close();
+
+		}
+
+		public void ModificarEstado(int idPedido, Estado estado)
+		{
+			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
+			var conexion = new SQLiteConnection(path);
+			conexion.Open();
+			var command = conexion.CreateCommand();
+			command.CommandText = "UPDATE pedidos SET estado = @Estado WHERE idPedido = @Id";
+			command.Parameters.AddWithValue("@Estado", estado);
+			command.Parameters.AddWithValue("@Id", idPedido);
+			command.ExecuteNonQuery();
+			conexion.Close();
 		}
 	}
 }
