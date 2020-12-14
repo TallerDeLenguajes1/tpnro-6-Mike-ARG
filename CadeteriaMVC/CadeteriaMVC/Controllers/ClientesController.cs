@@ -59,7 +59,19 @@ namespace CadeteriaMVC.Controllers
 
         public IActionResult UpdateCliente(int id)
         {
-            return View(new CadeteriaMVC.Entidades.Cliente { Id = id });
+            //return View(new CadeteriaMVC.ViewModel.ClienteViewModel { ID = id });
+
+            RepositorioCliente R = new RepositorioCliente();
+            CadeteriaMVC.Entidades.Cliente C = R.Buscar(id);
+            ClienteViewModel CVM = _mapper.Map<ClienteViewModel>(C);
+            if (C != null)
+            {
+                return View(CVM);
+            }
+            else
+            {
+                return Content("No se encontró ningun cadete con ese id");
+            }
         }
         public IActionResult ModificarCliente(CadeteriaMVC.ViewModel.ClienteViewModel C)
         {
@@ -74,9 +86,10 @@ namespace CadeteriaMVC.Controllers
         {
             RepositorioCliente R = new RepositorioCliente();
             CadeteriaMVC.Entidades.Cliente C = R.Buscar(id);
+            ClienteViewModel CVM = _mapper.Map<ClienteViewModel>(C);
             if (C != null)
             {
-                return View(C);
+                return View(CVM);
             }
             else
             {

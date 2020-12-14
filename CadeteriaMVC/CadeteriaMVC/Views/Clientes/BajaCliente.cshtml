@@ -1,7 +1,7 @@
-﻿@model CadeteriaMVC.Entidades.Cliente
+﻿@model CadeteriaMVC.ViewModel.ClienteViewModel
 
 <form asp-action="EliminarCliente" method="post">
-    <input type="text" asp-for="Id" value="@Model.Id" hidden />
+    <input type="text" asp-for="ID" value="@Model.ID" hidden />
     <h2>Seguro desea eliminar a @Model.Nombre?</h2>
     <input type="submit" />
 </form>
