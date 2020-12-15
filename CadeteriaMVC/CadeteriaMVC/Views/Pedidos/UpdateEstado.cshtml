@@ -1,0 +1,21 @@
+﻿@model CadeteriaMVC.Entidades.Pedido
+
+@{ ViewData["Title"] = "Modificar estado"; }
+
+<div class="text-center">
+    <h3>Modificar estado</h3>
+</div>
+
+<form asp-action="ModificarEstado" method="post">
+    <div class="container">
+        <label asp-for="Estado">Estado</label>
+        <select asp-for="Estado">
+            <option value="@CadeteriaMVC.Entidades.Estado.NoDisponible">@CadeteriaMVC.Entidades.Estado.NoDisponible</option>
+            <option value="@CadeteriaMVC.Entidades.Estado.Preparando">@CadeteriaMVC.Entidades.Estado.Preparando</option>
+            <option value="@CadeteriaMVC.Entidades.Estado.Entregando">@CadeteriaMVC.Entidades.Estado.Entregando</option>
+            <option value="@CadeteriaMVC.Entidades.Estado.Entregado">@CadeteriaMVC.Entidades.Estado.Entregado</option>
+        </select>
+    </div>
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" />
+</form>

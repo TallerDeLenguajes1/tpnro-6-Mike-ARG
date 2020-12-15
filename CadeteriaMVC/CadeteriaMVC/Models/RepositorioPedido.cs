@@ -130,6 +130,22 @@ namespace CadeteriaMVC.Models
 			conection.Close();
 		}
 
+		public void UpdatePedido(Pedido P)
+        {
+			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
+			var conection = new SQLiteConnection(path);
+			conection.Open();
+
+
+			var command = conection.CreateCommand();
+			string instruccion = "update pedidos set estado = @Estado where idPedido = @Id;";
+			command.CommandText = instruccion;
+			command.Parameters.AddWithValue("@Estado", P.Estado);
+			command.Parameters.AddWithValue("@Id", P.Id);
+			command.ExecuteNonQuery();
+			conection.Close();
+		}
+
 		public void Baja(int id)
 		{
 			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");

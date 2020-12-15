@@ -14,6 +14,7 @@
         <th>Tipo</th>
         <th>Cupon</th>
         <th>Costo</th>
+        <th>Cambiar Estado</th>
         <th>Modificar</th>
         <th>Eliminar</th>
     </tr>
@@ -29,6 +30,7 @@
             <td>@C.TipoPedido</td>
             <td>@C.TieneCupon</td>
             <td>@C.CostoPedido</td>
+            <td>@Html.ActionLink("Cambiar Estado", "UpdateEstado", "Pedidos", new { id = C.Id})</td>
             <td>@Html.ActionLink("Modificar", "UpdatePedido", "Pedidos", new { id = C.Id })</td>
             <td>@Html.ActionLink("Eliminar", "BajaPedido", "Pedidos", new { id = C.Id })</td>
         </tr>

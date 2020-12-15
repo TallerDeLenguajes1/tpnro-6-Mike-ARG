@@ -1,5 +1,5 @@
 ﻿@model List<CadeteriaMVC.ViewModel.PedidoViewModel>
-@{ ViewData["Title"] = "Lista de pedidos"; }
+@{ ViewData["Title"] = "Lista de pedidos";}
 
 <div class="text-center">
     <h3>Listado de Pedidos</h3>
@@ -15,9 +15,7 @@
         <th>Estado</th>
         <th>Cupón</th>
         <th>Valor del pedido</th>
-        <th>Modificar pedido</th>
-        <th>Cancelar pedido</th>
-        <th>Asiweqweqwgnar wqesad</th>
+        <th>Modificar estado</th>
     </tr>
 
     @foreach (CadeteriaMVC.ViewModel.PedidoViewModel P in Model)
@@ -39,9 +37,12 @@
                 }
             }
             <td>@P.CostoPedido</td>
-            <td>@Html.ActionLink("Modificar pedido", "UpdatePedido", new { id = P.ID })</td>
-            <td>@Html.ActionLink("Cancelar pedido", "BajaPedido", new { id = P.ID })</td>
-            <td>@Html.ActionLink("Asignar cadete", "AsignarCadete", new { id = P.ID})</td>
+            @{
+                if (P.Estado != CadeteriaMVC.Entidades.Estado.Entregado)
+                {
+                    <td>@Html.ActionLink("Modificar estado", "UpdatePedido", new { id = P.ID})</td>
+                }
+            }
         </tr>
     }
 </table>

@@ -34,6 +34,15 @@ namespace CadeteriaMVC.Controllers
             return View(ListaPedidoVM);
         }
 
+        public IActionResult IndexCadete()
+        {
+            RepositorioPedido R = new RepositorioPedido();
+            ListaPedidos = R.GetAll();
+            List<PedidoViewModel> ListaPedidoVM = _mapper.Map<List<PedidoViewModel>>(ListaPedidos);
+
+            return View(ListaPedidoVM);
+        }
+
         public IActionResult AltaPedido()
         {
             return View(new Pedido());
@@ -64,6 +73,16 @@ namespace CadeteriaMVC.Controllers
             PedidoDTO.Cliente = P.Cliente;
             PedidoDTO.Cadete = P.Cadete;
             R.Update(PedidoDTO);
+
+            return Redirect("Index");
+        }
+
+        [HttpPost]
+        public IActionResult ModificarEstado(PedidoViewModel P)
+        {
+            RepositorioPedido R = new RepositorioPedido();
+            Pedido PedidoDTO = _mapper.Map<Pedido>(P);
+            R.UpdatePedido(PedidoDTO);
 
             return Redirect("Index");
         }
