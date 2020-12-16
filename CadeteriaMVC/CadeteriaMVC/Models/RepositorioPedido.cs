@@ -191,6 +191,22 @@ namespace CadeteriaMVC.Models
 			return C;
 		}
 
+		public void AsignPedido(Pedido P)
+		{
+			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
+			var conection = new SQLiteConnection(path);
+			conection.Open();
+
+
+			var command = conection.CreateCommand();
+			string instruccion = "update pedidos set idCadete = @IdCadete where idPedido = @Id;";
+			command.CommandText = instruccion;
+			command.Parameters.AddWithValue("@IdCadete", P.Cadete);
+			command.Parameters.AddWithValue("@Id", P.Id);
+			command.ExecuteNonQuery();
+			conection.Close();
+		}
+
 		public void AsignarPedido(int idPedido, int idCadete)
         {
 			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");

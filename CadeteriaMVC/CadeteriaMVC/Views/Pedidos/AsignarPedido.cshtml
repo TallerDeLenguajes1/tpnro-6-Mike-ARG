@@ -1,0 +1,17 @@
+﻿@model CadeteriaMVC.Entidades.Pedido
+
+@{ ViewData["Title"] = "Asignar Pedido"; }
+
+<div class="text-center">
+    <h3>Asignación de Pedido</h3>
+</div>
+
+<form asp-action="AsignarPedido" method="post">
+    <div class="container">
+        <label asp-for="Cadete">Cadete</label>
+        <input type="number" asp-for="Cadete"/>
+        <span asp-validation-for="Cadete"/>
+    </div>
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" />
+</form>

@@ -16,33 +16,35 @@
         <th>Cupón</th>
         <th>Valor del pedido</th>
         <th>Modificar estado</th>
+        <th>Tomar Pedido</th>
     </tr>
 
     @foreach (CadeteriaMVC.Entidades.Pedido P in Model)
     {
-        <tr>
-            <td>@P.Id</td>
-            <td>@P.Observacion</td>
-            <td>@P.Cliente</td>
-            <td>@P.Cadete</td>
-            <td>@P.TipoPedido</td>
-            <td>@P.Estado</td>
-            @{ if (P.TieneCupon == true)
-                {
-                    <td>Sí</td>
-                }
-                else
-                {
-                    <td>No</td>
-                }
-            }
-            <td>@P.CostoPedido</td>
-            @{
-                if (P.Estado != CadeteriaMVC.Entidades.Estado.Entregado)
-                {
-                    <td>@Html.ActionLink("Modificar estado", "UpdateEstado", "Pedidos", new { id = P.Id })</td>
-                }
-            }
-        </tr>
+<tr>
+    <td>@P.Id</td>
+    <td>@P.Observacion</td>
+    <td>@P.Cliente</td>
+    <td>@P.Cadete</td>
+    <td>@P.TipoPedido</td>
+    <td>@P.Estado</td>
+    @{ if (P.TieneCupon == true)
+        {
+            <td>Sí</td>
+        }
+        else
+        {
+            <td>No</td>
+        }
+    }
+    <td>@P.CostoPedido</td>
+    @{
+        if (P.Estado != CadeteriaMVC.Entidades.Estado.Entregado)
+        {
+            <td>@Html.ActionLink("Modificar estado", "UpdateEstado", "Pedidos", new { id = P.Id })</td>
+            <td>@Html.ActionLink("Tomar Pedido", "AsignarPedido", "Pedidos", new { id = P.Id })</td>
+        }
+    }
+</tr>
     }
 </table>

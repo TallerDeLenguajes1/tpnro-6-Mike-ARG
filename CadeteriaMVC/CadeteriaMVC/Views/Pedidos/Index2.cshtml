@@ -1,8 +1,12 @@
-﻿@model List<CadeteriaMVC.ViewModel.PedidoViewModel>
-@{ ViewData["Title"] = "Lista de pedidos"; }
+﻿@{ /* En esta vista se mostrarán todos los pedidos que hay en el sitio, salvo los que ya hayan sido entregados,
+   para permitirle a los cadetes que vean esta vista seleccionar los pedidos que desean tomar*/ };
+
+@model List<CadeteriaMVC.ViewModel.PedidoViewModel>
+
+@{ ViewData["Title"] = "Lista de pedidos pendientes";}
 
 <div class="text-center">
-    <h3>Listado de Pedidos</h3>
+    <h3>Listado de Pedidos pendientes</h3>
 </div>
 
 <table class="table">
@@ -15,9 +19,7 @@
         <th>Estado</th>
         <th>Cupón</th>
         <th>Valor del pedido</th>
-        <th>Modificar pedido</th>
-        <th>Cancelar pedido</th>
-        <th>Asiweqweqwgnar wqesad</th>
+        <th>Modificar estado</th>
     </tr>
 
     @foreach (CadeteriaMVC.ViewModel.PedidoViewModel P in Model)
@@ -39,8 +41,12 @@
                 }
             }
             <td>@P.CostoPedido</td>
-            <td>@Html.ActionLink("Modificar pedido", "UpdatePedido", new { id = P.ID })</td>
-            <td>@Html.ActionLink("Cancelar pedido", "BajaPedido", new { id = P.ID })</td>
+            @{
+                if (P.Estado != CadeteriaMVC.Entidades.Estado.Entregado && P.Cadete == -1)
+                {
+                    <td>@Html.ActionLink("Tomar pedido", "AsignPedido", new { id = P.ID })</td>
+                }
+            }
         </tr>
     }
-</table>
+</table> 
