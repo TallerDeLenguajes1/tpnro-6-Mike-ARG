@@ -48,7 +48,6 @@ namespace CadeteriaMVC.Controllers
             RepositorioPedido R = new RepositorioPedido();
             ListaPedidos = R.GetAll();
             List<PedidoViewModel> ListaPedidoVM = _mapper.Map<List<PedidoViewModel>>(ListaPedidos);
-
             return View(ListaPedidoVM);
         }
 

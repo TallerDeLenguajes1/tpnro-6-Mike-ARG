@@ -21,9 +21,9 @@ namespace CadeteriaMVC.Entidades
     }
     public enum TipoPedido
     {
-        Express,
-        Delicado,
         Ecologico,
+        Delicado,
+        Express
     }
 
     public abstract class Persona
