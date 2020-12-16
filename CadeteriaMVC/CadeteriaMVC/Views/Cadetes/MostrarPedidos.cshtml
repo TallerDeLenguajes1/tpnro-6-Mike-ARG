@@ -1,38 +1,48 @@
-﻿@model List<CadeteriaMVC.Entidades.Pedido>
-@{ ViewData["Title"] = "Pedidos de " + ViewBag.nombre; }
+﻿@model List<CadeteriaMVC.ViewModel.PedidoViewModel>
+@{ ViewData["Title"] = "Lista de pedidos";}
 
 <div class="text-center">
-    <h3>Pedidos del cadete: @ViewBag.nombre</h3>
+    <h3>Listado de Pedidos</h3>
 </div>
 
 <table class="table">
     <tr>
+        <th>Número de pedido</th>
+        <th>Pedido</th>
         <th>Cliente</th>
-        <th>Direccion</th>
-        <th>Observacion</th>
+        <th>Cadete</th>
+        <th>Tipo de pedido</th>
         <th>Estado</th>
-        <th>Tipo</th>
-        <th>Cupon</th>
-        <th>Costo</th>
-        <th>Cambiar Estado</th>
-        <th>Modificar</th>
-        <th>Eliminar</th>
+        <th>Cupón</th>
+        <th>Valor del pedido</th>
+        <th>Modificar estado</th>
     </tr>
 
-    @foreach (CadeteriaMVC.Entidades.Pedido C in Model)
+    @foreach (CadeteriaMVC.ViewModel.PedidoViewModel P in Model)
     {
-        CadeteriaMVC.Entidades.Cliente Cl = new RepositorioCliente().Buscar(C.Cliente);
         <tr>
-            <td>@Cl.Nombre</td>
-            <td>@Cl.Direccion</td>
-            <td>@C.Observacion</td>
-            <td>@C.Estado</td>
-            <td>@C.TipoPedido</td>
-            <td>@C.TieneCupon</td>
-            <td>@C.CostoPedido</td>
-            <td>@Html.ActionLink("Cambiar Estado", "UpdateEstado", "Pedidos", new { id = C.Id})</td>
-            <td>@Html.ActionLink("Modificar", "UpdatePedido", "Pedidos", new { id = C.Id })</td>
-            <td>@Html.ActionLink("Eliminar", "BajaPedido", "Pedidos", new { id = C.Id })</td>
+            <td>@P.ID</td>
+            <td>@P.Observacion</td>
+            <td>@P.Cliente</td>
+            <td>@P.Cadete</td>
+            <td>@P.TipoPedido</td>
+            <td>@P.Estado</td>
+            @{ if (P.TieneCupon == true)
+                {
+                    <td>Sí</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+            }
+            <td>@P.CostoPedido</td>
+            @{
+                if (P.Estado != CadeteriaMVC.Entidades.Estado.Entregado)
+                {
+                    <td>@Html.ActionLink("Modificar estado", "UpdateEstado", "Pedidos", new { id = P.ID })</td>
+                }
+            }
         </tr>
     }
 </table>

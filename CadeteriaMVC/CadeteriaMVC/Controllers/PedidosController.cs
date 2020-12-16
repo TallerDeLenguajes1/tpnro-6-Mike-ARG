@@ -77,6 +77,11 @@ namespace CadeteriaMVC.Controllers
             return Redirect("Index");
         }
 
+        public IActionResult UpdateEstado(int id)
+        {
+            return View(new Pedido { Id = id });
+        }
+
         [HttpPost]
         public IActionResult ModificarEstado(PedidoViewModel P)
         {
@@ -84,7 +89,7 @@ namespace CadeteriaMVC.Controllers
             Pedido PedidoDTO = _mapper.Map<Pedido>(P);
             R.UpdatePedido(PedidoDTO);
 
-            return Redirect("Index");
+            return Redirect("IndexCadete");
         }
 
         public IActionResult BajaPedido(int id)
