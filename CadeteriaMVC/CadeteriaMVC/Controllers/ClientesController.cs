@@ -105,5 +105,13 @@ namespace CadeteriaMVC.Controllers
             }
             return Redirect("/Clientes/Index");
         }
+        public IActionResult MostrarPedidos(int id)
+        {
+            Cliente C = new RepositorioCliente().Buscar(id);
+            List<CadeteriaMVC.Entidades.Pedido> ListaPedidos = new RepositorioCliente().PedidosCliente(C.Id);
+            ViewBag.Nombre = C.Nombre;
+
+            return View(ListaPedidos);
+        }
     }
 }
