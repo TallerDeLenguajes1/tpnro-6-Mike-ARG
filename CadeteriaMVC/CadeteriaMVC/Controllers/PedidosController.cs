@@ -132,7 +132,7 @@ namespace CadeteriaMVC.Controllers
             return Redirect("Index");
         }
 
-        public IActionResult AsignCadete(int id)
+        public IActionResult UpdateCad(int id)
         {
             return View(new Pedido { Id = id });
         }
@@ -142,7 +142,7 @@ namespace CadeteriaMVC.Controllers
         {
             RepositorioPedido R = new RepositorioPedido();
             Pedido PedidoDTO = _mapper.Map<Pedido>(P);
-            R.AsignPedido(PedidoDTO);
+            R.UpdateCad(PedidoDTO);
 
             return Redirect("Index2");
         }

@@ -191,7 +191,7 @@ namespace CadeteriaMVC.Models
 			return C;
 		}
 
-		public void AsignPedido(Pedido P)
+		public void UpdateCad(Pedido P)
 		{
 			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
 			var conection = new SQLiteConnection(path);

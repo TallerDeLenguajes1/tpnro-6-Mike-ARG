@@ -44,7 +44,7 @@
             @{
                 if (P.Estado != CadeteriaMVC.Entidades.Estado.Entregado && P.Cadete == -1)
                 {
-                    <td>@Html.ActionLink("Tomar pedido", "AsignPedido", new { id = P.ID })</td>
+                    <td>@Html.ActionLink("Tomar pedido", "UpdateCad", new { id = P.ID })</td>
                 }
             }
         </tr>
