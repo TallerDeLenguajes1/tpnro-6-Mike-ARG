@@ -1,4 +1,4 @@
-﻿@model List<CadeteriaMVC.ViewModel.PedidoViewModel>
+﻿@model List<CadeteriaMVC.Entidades.Pedido>
 @{ ViewData["Title"] = "Lista de pedidos";}
 
 <div class="text-center">
@@ -18,10 +18,10 @@
         <th>Modificar estado</th>
     </tr>
 
-    @foreach (CadeteriaMVC.ViewModel.PedidoViewModel P in Model)
+    @foreach (CadeteriaMVC.Entidades.Pedido P in Model)
     {
         <tr>
-            <td>@P.ID</td>
+            <td>@P.Id</td>
             <td>@P.Observacion</td>
             <td>@P.Cliente</td>
             <td>@P.Cadete</td>
@@ -40,7 +40,7 @@
             @{
                 if (P.Estado != CadeteriaMVC.Entidades.Estado.Entregado)
                 {
-                    <td>@Html.ActionLink("Modificar estado", "UpdateEstado", "Pedidos", new { id = P.ID })</td>
+                    <td>@Html.ActionLink("Modificar estado", "UpdateEstado", "Pedidos", new { id = P.Id })</td>
                 }
             }
         </tr>
