@@ -96,7 +96,7 @@ namespace CadeteriaMVC.Controllers
         {
             RepositorioPedido R = new RepositorioPedido();
             Pedido PedidoDTO = _mapper.Map<Pedido>(P);
-            R.UpdatePedido(PedidoDTO);
+            R.UpdateEstado(PedidoDTO);
 
             return Redirect("IndexCadete");
         }

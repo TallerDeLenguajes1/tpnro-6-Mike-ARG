@@ -130,7 +130,7 @@ namespace CadeteriaMVC.Models
 			conection.Close();
 		}
 
-		public void UpdatePedido(Pedido P)
+		public void UpdateEstado(Pedido P)
         {
 			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
 			var conection = new SQLiteConnection(path);
