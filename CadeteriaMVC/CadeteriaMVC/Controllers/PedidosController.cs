@@ -85,9 +85,9 @@ namespace CadeteriaMVC.Controllers
             return Redirect("Index");
         }
 
-        public IActionResult UpdateEstado(int id)
+        public IActionResult UpdateEstado(int id, int idCadete)
         {
-            return View(new Pedido { Id = id });
+            return View(new Pedido { Id = id , Cadete = idCadete});
         }
 
         [HttpPost]
@@ -97,7 +97,8 @@ namespace CadeteriaMVC.Controllers
             Pedido PedidoDTO = _mapper.Map<Pedido>(P);
             R.UpdateEstado(PedidoDTO);
 
-            return Redirect("IndexCadete");
+            return Redirect("/Cadetes/MostrarPedidos?id=" + P.Cadete);
+;
         }
 
         public IActionResult BajaPedido(int id)
