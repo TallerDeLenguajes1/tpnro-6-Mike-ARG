@@ -1,9 +1,13 @@
-﻿@model List<CadeteriaMVC.Entidades.Pedido>
+﻿@model List<CadeteriaMVC.ViewModel.PedidoViewModel>
 @{ ViewData["Title"] = "Mis pedidos";}
 
 <div class="text-center">
     <h3>Mis Pedidos</h3>
 </div>
+
+<a href="/Cadetes/Inicio/@Model[0].Cadete" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Volver al inicio</a>
+<br />
+<br />
 
 <a class="btn btn-primary" href="/Pedidos/Index2" role="button">Tomar pedidos</a>
 
@@ -20,10 +24,10 @@
         <th>Modificar estado</th>
     </tr>
 
-    @foreach (CadeteriaMVC.Entidades.Pedido P in Model)
+    @foreach (CadeteriaMVC.ViewModel.PedidoViewModel P in Model)
     {
 <tr>
-    <td>@P.Id</td>
+    <td>@P.ID</td>
     <td>@P.Observacion</td>
     <td>@P.Cliente</td>
     <td>@P.Cadete</td>
@@ -42,7 +46,7 @@
     @{
         if (P.Estado != CadeteriaMVC.Entidades.Estado.Entregado)
         {
-            <td>@Html.ActionLink("Modificar estado", "UpdateEstado", "Pedidos", new { id = P.Id, idCadete = P.Cadete })</td>
+            <td>@Html.ActionLink("Modificar estado", "UpdateEstado", "Pedidos", new { id = P.ID, idCadete = P.Cadete })</td>
         }
     }
 </tr>

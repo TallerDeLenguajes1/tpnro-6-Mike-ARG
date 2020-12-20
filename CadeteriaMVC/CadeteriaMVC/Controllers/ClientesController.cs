@@ -113,5 +113,13 @@ namespace CadeteriaMVC.Controllers
 
             return View(ListaPedidos);
         }
+        public IActionResult Inicio(int id)
+        {
+            RepositorioCliente R = new RepositorioCliente();
+            Cliente cli = R.Buscar(id);
+            ClienteViewModel cliVM = _mapper.Map<ClienteViewModel>(cli);
+
+            return View(cliVM);
+        }
     }
 }

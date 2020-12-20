@@ -117,9 +117,19 @@ namespace CadeteriaMVC.Controllers
 		{
 			CadeteriaMVC.Entidades.Cadete C = new RepositorioCadete().Buscar(id);
 			List<CadeteriaMVC.Entidades.Pedido> ListaPedidos = new RepositorioCadete().PedidosCadete(C.Id);
+			List<PedidoViewModel> ListaVM = _mapper.Map<List<PedidoViewModel>>(ListaPedidos);
 			ViewBag.Nombre = C.Nombre;
 
-			return View(ListaPedidos);
+			return View(ListaVM);
 		}
+
+		public IActionResult Inicio(int id)
+        {
+			RepositorioCadete R = new RepositorioCadete();
+			Cadete cad = R.Buscar(id);
+			CadeteViewModel cadVM = _mapper.Map<CadeteViewModel>(cad);
+			
+			return View(cadVM);
+        }
 	}
 }

@@ -5,6 +5,8 @@
     <h3>Pedidos del cliente: @ViewBag.nombre</h3>
 </div>
 
+<a href="/Clientes/Inicio/@Model[0].Cliente" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Volver al inicio</a>
+
 <table class="table">
     <tr>
         <th>Cliente</th>
@@ -21,16 +23,21 @@
     @foreach (CadeteriaMVC.Entidades.Pedido C in Model)
     {
         CadeteriaMVC.Entidades.Cliente Cl = new RepositorioCliente().Buscar(C.Cliente);
-        <tr>
-            <td>@Cl.Nombre</td>
-            <td>@Cl.Direccion</td>
-            <td>@C.Observacion</td>
-            <td>@C.Estado</td>
-            <td>@C.TipoPedido</td>
-            <td>@C.TieneCupon</td>
-            <td>@C.CostoPedido</td>
+<tr>
+    <td>@Cl.Nombre</td>
+    <td>@Cl.Direccion</td>
+    <td>@C.Observacion</td>
+    <td>@C.Estado</td>
+    <td>@C.TipoPedido</td>
+    <td>@C.TieneCupon</td>
+    <td>@C.CostoPedido</td>
+    @{
+        if (C.Estado != CadeteriaMVC.Entidades.Estado.Entregado)
+        {
             <td>@Html.ActionLink("Modificar", "UpdatePedido", "Pedidos", new { id = C.Id })</td>
             <td>@Html.ActionLink("Eliminar", "BajaPedido", "Pedidos", new { id = C.Id })</td>
-        </tr>
+        }
+    }
+</tr>
     }
 </table>

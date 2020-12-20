@@ -144,8 +144,8 @@ namespace CadeteriaMVC.Models
                 P.Cadete = Convert.ToInt32(reader["idCadete"]);
                 P.Observacion = reader["observacion"].ToString();
                 P.TieneCupon = Convert.ToBoolean(reader["cupon"]);
-                P.Estado = (Estado)reader["estado"];
-                P.TipoPedido = (TipoPedido)reader["tipo"];
+                P.Estado = (Estado)Convert.ToInt32(reader["estado"]);
+                P.TipoPedido = (TipoPedido)Convert.ToInt32(reader["tipo"]);
                 P.CostoPedido = Convert.ToDouble(reader["costoPedido"]);
 
                 ListaPed.Add(P);
