@@ -1,0 +1,21 @@
+﻿@model CadeteriaMVC.ViewModel.CadeteViewModel
+
+@{ ViewData["Title"] = "Informe";}
+@{ RepositorioCadete R = new RepositorioCadete();}
+
+<h1>Tu informe</h1>
+
+<a href="/Cadetes/Inicio/@Model.ID" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Volver al inicio</a>
+
+<table class="table table-dark">
+    <tr>
+        <th>ID</th>
+        <th>Cantidad de pedidos entregados</th>
+        <th>Jornal</th>
+    </tr>
+    <tr>
+        <th>@Model.ID</th>
+        <th>@R.PedidosEntregados(Model.ID)</th>
+        <th>@R.CalcularJornal(Model.ID)</th>
+    </tr>
+</table>

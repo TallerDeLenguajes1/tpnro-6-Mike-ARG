@@ -153,5 +153,34 @@ namespace CadeteriaMVC.Models
 			conection.Close();
 			return ListaPed;
 		}
+
+		public int PedidosEntregados(int id)
+        {
+			int resultado = 0;
+			string path = "Data Source=" + Path.Combine(Directory.GetCurrentDirectory(), "Data\\tp6.db");
+			var conection = new SQLiteConnection(path);
+			conection.Open();
+
+			var command = conection.CreateCommand();
+			string instruccion = "SELECT count(idCadete) AS cantidad FROM pedidos WHERE idCadete = @Id AND estado = 0";
+			command.CommandText = instruccion;
+			command.Parameters.AddWithValue("@Id", id);
+
+			var reader = command.ExecuteReader();
+			while (reader.Read())
+			{
+				resultado = Convert.ToInt32(reader["cantidad"]);
+			}
+			conection.Close();
+
+			return resultado;
+		}
+		
+		public int CalcularJornal(int id)
+        {
+			int cantidadEntregados = PedidosEntregados(id);
+
+			return cantidadEntregados * 100;
+		}
 	}
 }

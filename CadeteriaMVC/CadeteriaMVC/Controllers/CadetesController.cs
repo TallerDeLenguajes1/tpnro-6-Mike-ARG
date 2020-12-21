@@ -131,5 +131,14 @@ namespace CadeteriaMVC.Controllers
 			
 			return View(cadVM);
         }
+
+		public IActionResult Informe(int id)
+        {
+			RepositorioCadete R = new RepositorioCadete();
+			Cadete cad = R.Buscar(id);
+			CadeteViewModel cadVM = _mapper.Map<CadeteViewModel>(cad);
+
+			return View(cadVM);
+        }
 	}
 }
