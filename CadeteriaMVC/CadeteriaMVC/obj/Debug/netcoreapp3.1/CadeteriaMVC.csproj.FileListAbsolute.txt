@@ -132,8 +132,8 @@ C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Pe
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Pedidos\IndexCadete.cshtml.g.cs
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Pedidos\UpdateEstado.cshtml.g.cs
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\MostrarPedidos.cshtml.g.cs
-C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Pedidos\Index2.cshtml.g.cs
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Pedidos\UpdateCad.cshtml.g.cs
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Cadetes\Inicio.cshtml.g.cs
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Inicio.cshtml.g.cs
 C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Cadetes\Informe.cshtml.g.cs
+C:\RepoGit2\tp6\CadeteriaMVC\CadeteriaMVC\obj\Debug\netcoreapp3.1\Razor\Views\Pedidos\PedidosPendientes.cshtml.g.cs

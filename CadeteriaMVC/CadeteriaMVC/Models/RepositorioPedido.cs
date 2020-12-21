@@ -199,7 +199,8 @@ namespace CadeteriaMVC.Models
 
 
 			var command = conection.CreateCommand();
-			string instruccion = "update pedidos set idCadete = @IdCadete where idPedido = @Id;";
+			string instruccion = "update pedidos set idCadete = @IdCadete where idPedido = @Id AND tipo = " +
+				"(SELECT vehiculo FROM cadetes WHERE idCadete = @IdCadete);";
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@IdCadete", P.Cadete);
 			command.Parameters.AddWithValue("@Id", P.Id);

@@ -43,7 +43,7 @@ namespace CadeteriaMVC.Controllers
             return View(ListaPedidoVM);
         }
 
-        public IActionResult Index2()
+        public IActionResult PedidosPendientes()
         {
             RepositorioPedido R = new RepositorioPedido();
             ListaPedidos = R.GetAll();
@@ -144,7 +144,7 @@ namespace CadeteriaMVC.Controllers
             Pedido PedidoDTO = _mapper.Map<Pedido>(P);
             R.UpdateCad(PedidoDTO);
 
-            return Redirect("Index2");
+            return Redirect("PedidosPendientes");
         }
     }
 }

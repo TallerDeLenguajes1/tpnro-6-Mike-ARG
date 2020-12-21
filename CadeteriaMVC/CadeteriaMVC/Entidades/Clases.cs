@@ -7,9 +7,9 @@ namespace CadeteriaMVC.Entidades
 {
     public enum Vehiculo
     {
-        Bicicleta,
-        Auto,
-        Moto
+        Bicicleta = 0,
+        Auto = 1,
+        Moto = 2
     }
 
     public enum Estado
@@ -21,9 +21,9 @@ namespace CadeteriaMVC.Entidades
     }
     public enum TipoPedido
     {
-        Ecologico,
-        Delicado,
-        Express
+        Ecologico = 0,
+        Delicado = 1,
+        Express = 2
     }
 
     public abstract class Persona
