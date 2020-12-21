@@ -1,4 +1,4 @@
-﻿@model List<CadeteriaMVC.Entidades.Pedido>
+﻿@model List<CadeteriaMVC.ViewModel.PedidoViewModel>
 @{ ViewData["Title"] = "Pedidos de " + ViewBag.nombre; }
 
 <div class="text-center">
@@ -6,6 +6,11 @@
 </div>
 
 <a href="/Clientes/Inicio/@Model[0].Cliente" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Volver al inicio</a>
+
+<br />
+<br />
+
+<a href="/Pedidos/AltaPedido/@Model[0].Cliente" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Hacer pedido</a>
 
 <table class="table">
     <tr>
@@ -20,7 +25,7 @@
         <th>Eliminar</th>
     </tr>
 
-    @foreach (CadeteriaMVC.Entidades.Pedido C in Model)
+    @foreach (CadeteriaMVC.ViewModel.PedidoViewModel C in Model)
     {
         CadeteriaMVC.Entidades.Cliente Cl = new RepositorioCliente().Buscar(C.Cliente);
 <tr>
@@ -29,13 +34,21 @@
     <td>@C.Observacion</td>
     <td>@C.Estado</td>
     <td>@C.TipoPedido</td>
-    <td>@C.TieneCupon</td>
+    @{ if (C.TieneCupon == true)
+        {
+            <td>Sí</td>
+        }
+        else
+        {
+            <td>No</td>
+        }
+    }
     <td>@C.CostoPedido</td>
     @{
         if (C.Estado != CadeteriaMVC.Entidades.Estado.Entregado)
         {
-            <td>@Html.ActionLink("Modificar", "UpdatePedido", "Pedidos", new { id = C.Id })</td>
-            <td>@Html.ActionLink("Eliminar", "BajaPedido", "Pedidos", new { id = C.Id })</td>
+            <td>@Html.ActionLink("Modificar", "UpdatePedido", "Pedidos", new { id = C.ID })</td>
+            <td>@Html.ActionLink("Eliminar", "BajaPedido", "Pedidos", new { id = C.ID })</td>
         }
     }
 </tr>

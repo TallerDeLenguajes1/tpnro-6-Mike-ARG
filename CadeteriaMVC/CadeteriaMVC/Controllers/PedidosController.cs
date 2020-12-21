@@ -53,7 +53,7 @@ namespace CadeteriaMVC.Controllers
 
         public IActionResult AltaPedido()
         {
-            return View(new Pedido());
+            return View(new PedidoViewModel());
         }
 
         [HttpPost]
@@ -64,9 +64,10 @@ namespace CadeteriaMVC.Controllers
             {
                 RepositorioPedido R = new RepositorioPedido();
                 Pedido PedidoDTO = _mapper.Map<Pedido>(P);
+                PedidoDTO.Estado = Estado.Preparando;
                 R.Alta(PedidoDTO);
             } 
-            return Redirect("Index");
+            return Redirect("/Clientes/MostrarPedidos/" + P.Cliente);
         }
         public IActionResult UpdatePedido(int id)
         {

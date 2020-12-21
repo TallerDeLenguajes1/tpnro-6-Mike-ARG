@@ -1,4 +1,4 @@
-﻿@model CadeteriaMVC.Entidades.Pedido
+﻿@model CadeteriaMVC.ViewModel.PedidoViewModel
 
 @{ViewData["Title"] = "Crear Pedido"; }
 
@@ -7,6 +7,12 @@
 </div>
 
 <form asp-action="CrearPedido" method="post">
+    <div class="container">
+        <label asp-for="Cliente">Ingresa tu ID de cliente</label>
+        <input type="text" asp-for="Cliente" />
+        <span asp-validation-for="Cliente"></span>
+    </div>
+
     <div class="container">
         <label asp-for="Observacion">Pedido</label>
         <input type="text" asp-for="Observacion" />
@@ -29,5 +35,6 @@
             <option value="@false">No</option>
         </select>
     </div>
-    <input type="submit"/>
+    <input type="hidden" asp-for="Cliente" />
+    <input type="submit" />
 </form>

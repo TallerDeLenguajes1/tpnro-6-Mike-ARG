@@ -54,7 +54,7 @@ namespace CadeteriaMVC.Models
 			string instruccion = "insert into pedidos(observacion, idCliente, estado, tipo, cupon, costoPedido) values (@Observacion, @IdCliente, @Estado, @Tipo, @Cupon, @CostoPedido);";
 			command.CommandText = instruccion;
 			command.Parameters.AddWithValue("@Observacion", C.Observacion);
-			command.Parameters.AddWithValue("@IdCliente", C.Id);
+			command.Parameters.AddWithValue("@IdCliente", C.Cliente);
 			//command.Parameters.AddWithValue("@IdCadete", C.Cadete.Id);
 			command.Parameters.AddWithValue("@Estado", C.Estado);
 			command.Parameters.AddWithValue("@Tipo", C.TipoPedido);

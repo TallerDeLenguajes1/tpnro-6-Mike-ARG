@@ -109,9 +109,10 @@ namespace CadeteriaMVC.Controllers
         {
             Cliente C = new RepositorioCliente().Buscar(id);
             List<CadeteriaMVC.Entidades.Pedido> ListaPedidos = new RepositorioCliente().PedidosCliente(C.Id);
+            List<PedidoViewModel> ListaVM = _mapper.Map<List<PedidoViewModel>>(ListaPedidos);
             ViewBag.Nombre = C.Nombre;
 
-            return View(ListaPedidos);
+            return View(ListaVM);
         }
         public IActionResult Inicio(int id)
         {
