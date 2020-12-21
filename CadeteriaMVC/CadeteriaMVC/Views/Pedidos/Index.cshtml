@@ -1,7 +1,10 @@
 ﻿@model List<CadeteriaMVC.ViewModel.PedidoViewModel>
 @{ ViewData["Title"] = "Lista de pedidos";}
 
-<a class="btn btn-primary" href="AltaPedido" role="button">Hacer pedido</a>
+<a class="btn btn-primary" href="/Cadetes/Inicio" role="button">Página de inicio Cadete</a>
+<br />
+<br />
+<a class="btn btn-primary" href="/Clientes/Inicio" role="button">Página de inicio Cliente</a>
 
 <div class="text-center">
     <h3>Listado de Pedidos</h3>
@@ -23,30 +26,30 @@
 
     @foreach (CadeteriaMVC.ViewModel.PedidoViewModel P in Model)
     {
-<tr>
-    <td>@P.ID</td>
-    <td>@P.Observacion</td>
-    <td>@P.Cliente</td>
-    <td>@P.Cadete</td>
-    <td>@P.TipoPedido</td>
-    <td>@P.Estado</td>
-    @{ if (P.TieneCupon == true)
-        {
-            <td>Sí</td>
-        }
-        else
-        {
-            <td>No</td>
-        }
-    }
-    <td>@P.CostoPedido</td>
-    @{
-        if (P.Estado == CadeteriaMVC.Entidades.Estado.Entregado)
-        {
-            <td>@Html.ActionLink("Modificar pedido", "UpdatePedido", new { id = P.ID })</td>
-            <td>@Html.ActionLink("Cancelar pedido", "BajaPedido", new { id = P.ID })</td>
-        }
-    }
-</tr>
+        <tr>
+            <td>@P.ID</td>
+            <td>@P.Observacion</td>
+            <td>@P.Cliente</td>
+            <td>@P.Cadete</td>
+            <td>@P.TipoPedido</td>
+            <td>@P.Estado</td>
+            @{ if (P.TieneCupon == true)
+                {
+                    <td>Sí</td>
+                }
+                else
+                {
+                    <td>No</td>
+                }
+            }
+            <td>@P.CostoPedido</td>
+            @{
+                if (P.Estado != CadeteriaMVC.Entidades.Estado.Entregado)
+                {
+                    <td>@Html.ActionLink("Modificar pedido", "UpdatePedido", new { id = P.ID })</td>
+                    <td>@Html.ActionLink("Cancelar pedido", "BajaPedido", new { id = P.ID })</td>
+                }
+            }
+        </tr>
     }
 </table>
