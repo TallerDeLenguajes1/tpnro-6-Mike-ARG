@@ -1,5 +1,9 @@
 ﻿@model List<CadeteriaMVC.ViewModel.CadeteViewModel>
-@{ ViewData["Title"] = "Cadetes"; }
+@{ ViewData["Title"] = "Cadetes";
+
+    RepositorioCadete R = new RepositorioCadete();
+
+}
 
 <a class="btn btn-primary" href="AltaCadete" role="button">Crear Cadete</a>
 
@@ -26,7 +30,7 @@
             <td>@C.Direccion</td>
             <td>@C.Telefono</td>
             <td>@C.TipoVehiculo</td>
-            <td>@C.Jornal</td>
+            <td>@R.CalcularJornal(C.ID)</td>
             <td>@Html.ActionLink("Ver pedidos", "MostrarPedidos", new { id = C.ID })</td>
             <td>@Html.ActionLink("Modificar", "UpdateCadete", new { id = C.ID })</td>
             <td>@Html.ActionLink("Eliminar", "BajaCadete", new { id = C.ID })</td>
